@@ -1,7 +1,8 @@
 import React from "react";
 import useLogin from "./hooksAuthentication/useLogin";
-import useSignup from "./hooksAuthentication/useSignup";
+import useSignup from "./hooksAuthentication/SignUp/useSignup";
 import style from "./Authentication.module.css";
+import { Link } from "react-router-dom";
 
 const Authentication: React.FC = () => {
   const { handleLogin, email, setEmail, password, setPassword, error } =
@@ -41,9 +42,19 @@ const Authentication: React.FC = () => {
 
           <div className={style.btnAuthentication}>
             <button type="submit">Login</button>
-            <button type="button" onClick={handleSignUp}>
+            {/* <button type="button" onClick={handleSignUp}>
               Create Account
-            </button>
+            </button> */}
+            <Link to="/signup">
+              {" "}
+              <button>Signup</button>
+            </Link>
+            <section className={style.hideContent}>
+              <div>
+                <label htmlFor="userID">User Id</label>
+                <input type="text" name="userID" required />
+              </div>
+            </section>
           </div>
 
           {error && <p className={style.error}>{error}</p>}

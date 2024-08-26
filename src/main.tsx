@@ -6,6 +6,7 @@ import Authentication from "./components/Authentication/Authentication/Authentic
 import "./index.css";
 import UseChat from "./components/chat/Chat";
 import { AuthProvider } from "./components/Authentication/Authentication/hooksAuthentication/useAuthContext";
+import Signup from "./components/Authentication/Authentication/hooksAuthentication/SignUp/Signup";
 
 type RootProps = {
   children: React.ReactNode;
@@ -39,6 +40,14 @@ const router = createBrowserRouter([
     element: (
       <Root>
         <UseChat />
+      </Root>
+    ),
+  },
+  {
+    path: "/signup",
+    element: (
+      <Root>
+        <Signup />
       </Root>
     ),
   },

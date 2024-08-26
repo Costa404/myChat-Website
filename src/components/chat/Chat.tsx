@@ -16,22 +16,25 @@ const Chat: React.FC = () => {
   // Renderização
   return (
     <section className={style.contentCustomization}>
+      <span className={style.title}>
+        <h1>myChat</h1>
+      </span>
       <div className={style.chatCustomization}>
-        <div>
+        <div className={style.messagesCustomization}>
           {messages.map((message) => (
-            <div className={style.messagesCustomization} key={message.id}>
+            <div className={style.test} key={message.id}>
               <strong
                 className={style.messagesCostum}
                 style={{ background: randomHexColor }} // Use a cor aleatória aqui
               >
-                {message.user}:{" "}
+                {message.user}{" "}
               </strong>
               {message.text}
             </div>
           ))}
         </div>
 
-        <form onSubmit={sendMessage}>
+        <form onSubmit={sendMessage} className={style.form}>
           <input
             type="text"
             value={newMessage}
@@ -40,11 +43,10 @@ const Chat: React.FC = () => {
           />
           <button type="submit">Send</button>
         </form>
-        <button onClick={handleLogOut}>Log Out</button>
-
         <Link to="/">
-          <button>Chat</button>
+          <button>Homepage</button>
         </Link>
+        <button onClick={handleLogOut}>Log Out</button>
       </div>
     </section>
   );

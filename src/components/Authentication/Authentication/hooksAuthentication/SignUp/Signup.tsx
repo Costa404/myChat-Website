@@ -5,7 +5,7 @@ const Signup = () => {
   const { selectedImg, handleImgChange } = useImgUpload();
 
   return (
-    <section className={hideContent}>
+    <section>
       <div>
         <label htmlFor="userID">User Id</label>
         <input type="text" name="userID" required />

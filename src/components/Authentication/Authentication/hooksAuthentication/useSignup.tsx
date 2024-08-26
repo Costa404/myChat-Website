@@ -7,7 +7,7 @@ const useSignup = () => {
   const { email, password, setError } = useAuth();
   const navigate = useNavigate();
 
-  const handleSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSignUp = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setError(null); // Limpa erros anteriores
 

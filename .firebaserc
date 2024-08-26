@@ -1,0 +1,16 @@
+{
+  "projects": {
+    "default": "fir-firstproject-71bad"
+  },
+  "targets": {
+    "fir-firstproject-71bad": {
+      "hosting": {
+        "fir-firstproject-71bad": [
+          "myChat-Website"
+        ]
+      }
+    }
+  },
+  "etags": {},
+  "dataconnectEmulatorConfig": {}
+}

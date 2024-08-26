@@ -17,20 +17,20 @@ const Root = ({ children }: RootProps) => {
 
 const router = createBrowserRouter([
   {
-    path: "/homepage",
-    element: (
-      <Root>
-        <Homepage />
-      </Root>
-    ),
-  },
-  {
     path: "/",
     element: (
       <Root>
         <AuthProvider>
           <Authentication />
         </AuthProvider>
+      </Root>
+    ),
+  },
+  {
+    path: "/homepage",
+    element: (
+      <Root>
+        <Homepage />
       </Root>
     ),
   },

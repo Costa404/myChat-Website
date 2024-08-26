@@ -13,15 +13,14 @@ const Authentication: React.FC = () => {
     <section className={style.geralContent}>
       <div className={style.contentLeft}>
         <h1>myChat</h1>
-        <span>
-          Connect with friends and the world <br /> around you on myChat.
-        </span>
+        <span>Connect with friends and the world around you on myChat.</span>
       </div>
 
       <div className={style.contentRight}>
         <form className={style.contentRight} onSubmit={handleLogin}>
-          <label htmlFor="email">Email:</label>
+          <label htmlFor="email"></label>
           <input
+            placeholder="Email:"
             type="email"
             name="email"
             id="email"
@@ -30,8 +29,9 @@ const Authentication: React.FC = () => {
             required
           />
 
-          <label htmlFor="password">Password:</label>
+          <label htmlFor="password"></label>
           <input
+            placeholder="Password:"
             type="password"
             name="password"
             id="password"

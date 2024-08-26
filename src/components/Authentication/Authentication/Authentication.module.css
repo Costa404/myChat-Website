@@ -39,6 +39,8 @@ body {
 .btnAuthentication button {
   width: 20rem;
   font-size: 1.5rem;
+  background-color: navy;
+  color: white;
 }
 
 .error {
@@ -51,14 +53,60 @@ body {
   font-size: 2.5rem;
 }
 
-.contentRight button {
-}
-
 .contentLeft {
   font-size: 2.5rem;
+  width: 35rem;
 }
 
 .contentLeft span {
   color: navy;
   font-weight: 600;
+}
+
+@media (max-width: 40rem) {
+  input {
+    max-width: 35rem;
+  }
+
+  .contentRight {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  input {
+    max-width: 30rem;
+    border: none;
+    border-top: 2px solid black;
+    display: flex;
+    gap: 1rem;
+  }
+
+  button {
+    width: 30rem;
+  }
+
+  link button {
+    width: 100vw;
+  }
+
+  .geralContent {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+  }
+
+  .btnAuthentication {
+    display: flex;
+    flex-direction: column;
+    padding-top: 1rem;
+    gap: 1rem;
+  }
+}
+
+body {
+  overflow-x: hidden;
 }

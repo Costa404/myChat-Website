@@ -17,7 +17,7 @@ const useSignup = () => {
         email,
         password
       );
-      navigate("/"); // Redireciona para a homepage após o sucesso do cadastro
+      navigate("/homepage"); // Redireciona para a homepage após o sucesso do cadastro
       console.log("User created:", userCredential.user);
     } catch (error) {
       console.error("Signup Error:", error);

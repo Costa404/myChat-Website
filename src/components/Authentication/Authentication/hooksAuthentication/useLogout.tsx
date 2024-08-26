@@ -12,7 +12,7 @@ const useLogout = () => {
     } catch (error) {
       console.error("Error logging out:", error);
     }
-    navigate("/login");
+    navigate("/");
   };
 
   return { handleLogOut };

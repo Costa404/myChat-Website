@@ -17,7 +17,7 @@ const useLogin = () => {
         email,
         password
       );
-      navigate("/"); // Redireciona para a homepage após login
+      navigate("/homepage"); // Redireciona para a homepage após login
       console.log("Logged in:", userCredential.user);
     } catch (error) {
       console.error("Login Error:", error);

@@ -1,0 +1,20 @@
+/* .chatCustomization {
+  max-width: 20rem;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+} */
+
+.messagesCustomization {
+  max-width: 300px;
+  word-wrap: break-word;
+    }
+
+.contentCustomization {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}

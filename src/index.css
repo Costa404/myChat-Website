@@ -1,0 +1,50 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+.addRemove {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+}
+
+input {
+  height: 5rem;
+  width: 50rem;
+  /* background-color: black; */
+}
+
+button {
+  height: 50px;
+
+  border: 1px solid black;
+  /* background-color: black; */
+  cursor: pointer;
+}
+
+.list * {
+  color: aqua;
+}
+
+.test {
+  display: flex;
+  flex-direction: column;
+}
+
+span {
+  color: white;
+}
+
+button:hover {
+  cursor: pointer;
+}

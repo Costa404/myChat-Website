@@ -2,11 +2,13 @@ import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Homepage from "./components/Pages/Homepage";
-import Authentication from "./components/Authentication/Authentication/Authentication";
+import Authentication from "./components/Authentication/Authentication";
 import "./index.css";
 import UseChat from "./components/chat/Chat";
-import { AuthProvider } from "./components/Authentication/Authentication/hooksAuthentication/useAuthContext";
-import Signup from "./components/Authentication/Authentication/hooksAuthentication/SignUp/Signup";
+import { AuthProvider } from "./components/Authentication/hooksAuthentication/useAuthContext";
+import { ErrorProvider } from "./components/errorContext/useError";
+import ErrorDisplay from "./components/errorContext/ErrorDisplay";
+import { UserProvider } from "./components/Users/userContext";
 
 type RootProps = {
   children: React.ReactNode;
@@ -21,9 +23,7 @@ const router = createBrowserRouter([
     path: "/",
     element: (
       <Root>
-        <AuthProvider>
-          <Authentication />
-        </AuthProvider>
+        <Authentication />
       </Root>
     ),
   },
@@ -43,18 +43,17 @@ const router = createBrowserRouter([
       </Root>
     ),
   },
-  {
-    path: "/signup",
-    element: (
-      <Root>
-        <Signup />
-      </Root>
-    ),
-  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <ErrorProvider>
+      <UserProvider>
+        <AuthProvider>
+          <ErrorDisplay />
+          <RouterProvider router={router} />
+        </AuthProvider>
+      </UserProvider>
+    </ErrorProvider>
   </StrictMode>
 );

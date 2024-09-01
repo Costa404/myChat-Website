@@ -1,14 +1,8 @@
+// firebase.ts
 import { initializeApp } from "firebase/app";
-import {
-  getFirestore,
-  collection,
-  getDocs,
-  addDoc,
-  deleteDoc,
-  doc,
-  getDoc,
-} from "firebase/firestore";
+import { getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
+import { getStorage } from "firebase/storage";
 
 // Configuração do Firebase
 const firebaseConfig = {
@@ -26,42 +20,19 @@ const app = initializeApp(firebaseConfig);
 
 // Inicialize o Firestore
 const db = getFirestore(app);
-export { db };
 
-export const auth = getAuth(app);
+// Inicialize o Auth
+const auth = getAuth(app);
 
-export const fetchGames = async () => {
-  const colRef = collection(db, "games");
-  const snapshot = await getDocs(colRef);
+// Inicialize o Storage
+const storage = getStorage(app);
 
-  return { docs: snapshot.docs, colRef }; // Retorna os dados e a referência da coleção
-};
+// Exporta os serviços
+export { db, auth, storage };
 
-export const AddPlayer = async (PlayerData: {
-  player: string;
-  goals: number;
-}) => {
-  const colRef = collection(db, "games");
+// export const fetchGames = async () => {
+//   const colRef = collection(db, "games");
+//   const snapshot = await getDocs(colRef);
 
-  try {
-    const docRef = await addDoc(colRef, PlayerData);
-    console.log("Player added with Id:", docRef);
-  } catch (error) {
-    console.log("Error, try again", error);
-  }
-};
-
-export const DeletePlayer = async (playerId: string) => {
-  try {
-    const docRef = doc(db, "games", playerId);
-    const docSnap = await getDoc(docRef);
-    if (docSnap.exists()) {
-      await deleteDoc(docRef);
-      console.log("Player deleted with id:", playerId);
-    } else {
-      throw new Error(`"No player found with id:", ${playerId}`);
-    }
-  } catch (error) {
-    console.log("Error, try again", error);
-  }
-};
+//   return { docs: snapshot.docs, colRef }; // Retorna os dados e a referência da coleção
+// };

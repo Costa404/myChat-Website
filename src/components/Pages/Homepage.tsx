@@ -1,4 +1,4 @@
-import useLogOut from "../Authentication/Authentication/hooksAuthentication/useLogout";
+import useLogOut from "../Authentication/hooksAuthentication/useLogout";
 import { Link } from "react-router-dom";
 import style from "./homepage.module.css";
 

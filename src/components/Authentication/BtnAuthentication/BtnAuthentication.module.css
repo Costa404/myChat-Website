@@ -1,0 +1,55 @@
+/* btntest.module.css */
+.container {
+  /* display: flex;
+  height: 50px;
+  margin: 50px auto;
+  background-color: white;~
+  width: 30rem; */
+  width: 25rem;
+  position: relative;
+  background-color: #e7e7e7;
+  height: 4.4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  border-radius: 10rem;
+}
+
+button {
+  width: 100px;
+  height: 50px;
+  background: transparent; /* Remove o fundo do botão */
+  border: none;
+  position: relative;
+  font-size: 16px;
+  cursor: pointer;
+  z-index: 2; /* Eleva o texto dos botões acima do highlight */
+  color: black; /* Cor do texto */
+  font-weight: 600;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+ 
+}
+
+.highlight {
+  border-radius: 10rem;
+  position: absolute;
+  top: 0.5rem;
+  width: 100px;
+  height: 4.4rem;
+  z-index: 1; /* Highlight fica abaixo dos botões */
+
+  background-color: #fff;
+  transition: all 0.25s ease-in-out;
+}
+
+.login {
+  transform: translateX(0); /* Posição inicial à esquerda */
+}
+
+.signup {
+  transform: translateX(
+    15rem
+  ); /* Desloca à direita, alinhando com o segundo botão */
+}

@@ -1,0 +1,42 @@
+.formCustomization {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.formCustomization img {
+  width: 3rem;
+}
+
+.formCustomization input {
+  border: none;
+}
+
+.inputFieldContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.containerCreateAccount {
+  height: 70vh;
+}
+
+.inputUserId {
+  padding-top: 2rem;
+}
+
+.input img {
+  border-radius: 100%;
+  width: 5rem;
+}
+
+.messageContainer span {
+  font-size: 4rem;
+}
+
+.messageContainer img {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 100%;
+}

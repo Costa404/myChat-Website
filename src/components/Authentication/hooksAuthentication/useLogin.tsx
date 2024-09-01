@@ -23,8 +23,7 @@ const useLogin = () => {
         password
       );
 
-      const userId = userCredential.user.uid;
-      const profileImageUrl = await getProfileImage(userId);
+      const profileImageUrl = await getProfileImage();
 
       if (profileImageUrl) {
         console.log("URL da imagem de perfil:", profileImageUrl);

@@ -1,8 +1,8 @@
 import { useEffect, useRef } from "react";
-import type { Message } from "./useMessages";
+import type { MessageProps } from "./useMessages";
 
 interface useScrollProps {
-  messages: Message[];
+  messages: MessageProps[];
 }
 
 const useScroll = ({ messages }: useScrollProps) => {

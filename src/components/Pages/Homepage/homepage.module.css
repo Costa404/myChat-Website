@@ -1,0 +1,31 @@
+.btnChat {
+  border: 1px solid black;
+  font-size: 2rem;
+
+  background-color: white;
+}
+
+.geralContent {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.geralContent h6 {
+  font-size: 2rem;
+  color: navy;
+  font-weight: 700;
+}
+
+.homepageCustomization {
+  width: 33vw;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+}
+
+.friendCustomization {
+  background-color: red;
+}

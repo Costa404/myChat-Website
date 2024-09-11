@@ -26,10 +26,6 @@ button {
   cursor: pointer;
 }
 
-* {
-  color: black;
-}
-
 .test {
   display: flex;
   flex-direction: column;
@@ -41,4 +37,10 @@ button:hover {
 
 button {
   border: none;
+  box-sizing: border-box;
+}
+
+input {
+  min-height: 2.5rem;
+  box-sizing: border-box;
 }

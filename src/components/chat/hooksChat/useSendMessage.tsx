@@ -2,30 +2,39 @@ import { useState } from "react";
 import { addDoc, collection, Timestamp } from "firebase/firestore";
 import { db } from "../../../firebase"; // Ajuste o caminho conforme necessário
 import { useError } from "../../errorContext/useError";
+import { useUser } from "../../Users/userContext";
+type useSendMessagesProps = {
+  chatId: string;
+  userId: string;
+};
 
-const useSendMessage = (userId: string | null) => {
+const useSendMessage = ({ chatId, userId }: useSendMessagesProps) => {
   const [newMessage, setNewMessage] = useState<string>("");
   const { setError } = useError();
+  const { userId: contextUserId } = useUser();
+  const finalUserId = userId || contextUserId; // Usa userId do contexto se não for passado como prop.
 
   const sendMessage = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    console.log("sendMessage called with:", newMessage, userId);
-
-    if (newMessage.trim() === "" || !userId) {
+    if (newMessage.trim() === "" || !finalUserId) {
       console.log("Message or userId is empty, returning early.");
       return;
     }
 
     try {
-      // Adiciona a nova mensagem ao Firestore
       await addDoc(collection(db, "messages"), {
         text: newMessage,
         timestamp: Timestamp.now(),
-        userId: userId,
+        userId: finalUserId,
+        chatId: chatId,
       });
-      console.log("Message sent successfully.");
-      setNewMessage(""); // Limpa o campo de nova mensagem
+
+      if (!chatId) {
+        return;
+      }
+
+      setNewMessage("");
     } catch (error) {
       console.error("Error adding message: ", error);
       setError("Failed to send message. Please try again.");

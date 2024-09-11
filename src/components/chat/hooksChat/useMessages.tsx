@@ -7,51 +7,68 @@ import {
   Timestamp,
   getDoc,
   doc,
+  where,
 } from "firebase/firestore";
 import { db } from "../../../firebase";
 import { getAuth } from "firebase/auth";
 import { useUser } from "../../Users/userContext";
 
-export interface Message {
+export interface MessageProps {
   id: string;
   text: string;
   userId: string;
   timestamp: Timestamp;
+  chatId: string;
 }
+type useSendMessagesProps = {
+  userId: string;
+  chatId: string;
+};
 
-const useMessages = () => {
-  const [messages, setMessages] = useState<Message[]>([]);
-  const { userId, setUserId } = useUser();
+const useMessages = ({ userId, chatId }: useSendMessagesProps) => {
+  const [messages, setMessages] = useState<MessageProps[]>([]);
+  const { setUserId } = useUser();
 
   useEffect(() => {
+    if (!userId || !chatId) {
+      console.error("userId or chatId is missing");
+      return;
+    }
     const auth = getAuth();
     const currentUser = auth.currentUser;
 
     // Recupere o userId personalizado do Firestore
     const fetchUserId = async () => {
-      if (currentUser) {
-        const userDoc = await getDoc(doc(db, "users", currentUser.uid)); // Pega o documento do usuário baseado no UID
+      if (currentUser && currentUser.email) {
+        const userDoc = await getDoc(doc(db, "users", currentUser.email));
         if (userDoc.exists()) {
           const userData = userDoc.data();
-          setUserId(userData?.userId || "Unknown User"); // Aqui está o userId personalizado
+          setUserId(userData?.userId || "Unknown User");
         } else {
+          console.log("User document not found for email:", currentUser.email);
           setUserId("Unknown User");
         }
+      } else {
+        console.log("No authenticated user found or email is null.");
       }
     };
-
     fetchUserId();
 
-    // Consulta para obter mensagens em ordem crescente
-    const q = query(collection(db, "messages"), orderBy("timestamp"));
+    // Consulta para obter mensagens filtradas pelo chatId
+    const q = query(
+      collection(db, "messages"),
+      orderBy("timestamp"),
+      where("chatId", "==", chatId) // Filtra as mensagens pelo chatId
+    );
 
     // Configura um ouvinte em tempo real para mensagens
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
-      const messagesArray: Message[] = [];
+      const messagesArray: MessageProps[] = [];
       querySnapshot.forEach((doc) => {
+        const messageData = doc.data();
         messagesArray.push({
           id: doc.id,
-          ...(doc.data() as Omit<Message, "id">),
+          ...(messageData as Omit<MessageProps, "id">),
         });
       });
       setMessages(messagesArray);
@@ -59,64 +76,93 @@ const useMessages = () => {
 
     // Limpa o ouvinte quando o componente é desmontado
     return () => unsubscribe();
-  }, [setUserId]);
+  }, [chatId, userId, setUserId]);
 
-  return { messages, userId };
+  return { messages, userId, chatId };
 };
 
 export default useMessages;
 
-// import { useState, useEffect } from "react";
-// import {
-//   collection,
-//   query,
-//   onSnapshot,
-//   orderBy,
-//   Timestamp,
-// } from "firebase/firestore";
-// import { db } from "../../../firebase"; // Ajuste o caminho conforme necessário
-// import { getAuth } from "firebase/auth";
+// import React from "react";
 
-// interface Message {
-//   id: string;
-//   text: string;
-//   user: string;
-//   timestamp: Timestamp;
-// }
+// import useSendMessage from "./hooksChat/useSendMessage";
+// import style from "./Chat.module.css";
+// import ProfileImage from "../Users/UserImg/ProfileImg";
+// import { useUser } from "../Users/userContext";
+// import useScroll from "./hooksChat/useScroll";
+// import Header from "../Header/Header";
+// import { Link, useParams } from "react-router-dom";
+// import { IoArrowBack } from "react-icons/io5";
+// import useMessages from "./hooksChat/useMessages";
 
-// const useMessages = () => {
-//   const [messages, setMessages] = useState<Message[]>([]);
-//   const [user, setUser] = useState<string | null>(null);
+// const Chat: React.FC = () => {
+//   const { chatId } = useParams<{ chatId: string }>();
+//   const { userId } = useUser();
+//   const validChatId = chatId ?? "";
+//   const validUserId = userId ?? "";
 
-//   useEffect(() => {
-//     const auth = getAuth();
-//     const currentUser = auth.currentUser;
+//   const { messages } = useMessages({
+//     userId: validUserId,
+//     chatId: validChatId,
+//   });
+//   const { messagesEndRef } = useScroll({ messages });
 
-//     // Define o usuário atual
-//     if (currentUser) {
-//       setUser(currentUser.email || "Unknown User");
-//     }
+//   const { newMessage, setNewMessage, sendMessage } = useSendMessage({
+//     chatId: validChatId,
+//     userId: validUserId,
+//   });
 
-//     // Consulta para obter mensagens em ordem crescente
-//     const q = query(collection(db, "messages"), orderBy("timestamp"));
+//   if (!chatId || !userId) {
+//     // Handle cases where chatId or userId are undefined
+//     console.error("chatId or userId is undefined");
+//     return null;
+//   }
 
-//     // Configura um ouvinte em tempo real para mensagens
-//     const unsubscribe = onSnapshot(q, (querySnapshot) => {
-//       const messagesArray: Message[] = [];
-//       querySnapshot.forEach((doc) => {
-//         messagesArray.push({
-//           id: doc.id,
-//           ...(doc.data() as Omit<Message, "id">), // Exclui "id" da tipagem dos dados
-//         });
-//       });
-//       setMessages(messagesArray);
-//     });
+//   return (
+//     <section className={style.totalContent}>
+//       <Header
+//         link={
+//           <Link to="/homepage">
+//             <button>
+//               <IoArrowBack />
+//             </button>
+//           </Link>
+//         }
+//       />
+//       <div className={style.chatCustomization}>
+//         <div className={style.messagesCustomization}>
+//           {messages.map((message) => {
+//             const alignmentClass =
+//               validUserId === message.userId
+//                 ? style.messageSent
+//                 : style.messageReceived;
 
-//     // Limpa o ouvinte quando o componente é desmontado
-//     return () => unsubscribe();
-//   }, []); // Dependências ajustadas
-
-//   return { messages, user };
+//             return (
+//               <div
+//                 className={`${style.containerMessage} ${alignmentClass}`}
+//                 key={message.id}
+//               >
+//                 <ProfileImage userId={message.userId} />
+//                 <span className={style.messagesContent}>
+//                   <span>{message.text}</span>
+//                 </span>
+//               </div>
+//             );
+//           })}
+//           <div ref={messagesEndRef}></div>
+//         </div>
+//         <form onSubmit={sendMessage} className={style.form}>
+//           <input
+//             type="text"
+//             value={newMessage}
+//             onChange={(e) => setNewMessage(e.target.value)}
+//             placeholder="Type a message..."
+//           />
+//           <button type="submit">Send</button>
+//         </form>
+//       </div>
+//     </section>
+//   );
 // };
 
-// export default useMessages;
+// export default Chat;

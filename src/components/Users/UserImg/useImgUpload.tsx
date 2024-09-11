@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { storage } from "../../firebase";
-import { useUser } from "./userContext";
+import { useUser } from "../userContext";
+import { storage } from "../../../firebase";
 
 export const useImgUpload = () => {
   const [selectedImg, setSelectedImg] = useState<File | null>(null);
@@ -17,7 +17,7 @@ export const useImgUpload = () => {
   };
 
   const uploadImage = async () => {
-    console.log("Upload iniciado...");
+    console.log("UploadImage function called");
     if (selectedImg) {
       console.log("Selected image:", selectedImg);
       setUploading(true);

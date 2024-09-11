@@ -4,6 +4,10 @@
   gap: 2rem;
 }
 
+.containerCreateAccount {
+  width: 100%;
+}
+
 .formCustomization img {
   width: 3rem;
 }
@@ -16,6 +20,12 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.inputFieldContainer input {
+  border: none;
 }
 
 .containerCreateAccount {
@@ -39,4 +49,9 @@
   width: 3.5rem;
   height: 3.5rem;
   border-radius: 100%;
+  object-fit: cover;
+}
+
+.inputFile {
+  padding: 0;
 }

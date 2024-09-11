@@ -1,94 +1,3 @@
-/* .messagesCustomization {
-  width: 100%;
-}
-
-
-
-.title {
-  background-color: black;
-  width: 100vw;
-  height: 10rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.chatCustomization {
-  height: 100vh;
-  width: 25vw;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  border-left: 2px solid black;
-  border-right: 2px solid black;
-  gap: 1rem;
-  box-sizing: border-box;
-}
-
-.form {
-  display: flex;
-  flex-direction: column;
-}
-
-.form button {
-  background-color: navy;
-  width: 100%;
-}
-
-@media (max-width: 40rem) {
-  input {
-    max-width: 35rem;
-  }
-
-  .chatCustomization {
-    width: 30rem;
-    display: flex;
-    flex-direction: column;
-    word-wrap: break-word;
-  }
-
-  input {
-    max-width: 30rem;
-    border: none;
-    border-top: 2px solid black;
-  }
-
-  button {
-    width: 30rem;
-  }
-
-  link button {
-    width: 100vw;
-  }
-}
-
-body {
-  overflow-x: hidden;
-}
-
-
-
-.containerMessage :nth-child(1) {
-  color: white;
-}
-
-.messagesContent {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  width: 100%;
-}
-
-.messagesContent span {
-  font-size: 2.5rem;
-  width: 100%;
-  word-wrap: break-word;
-  border: 1px solid aqua;
-  border-radius: 1rem;
-  padding: 0.5rem;
-  margin-bottom: 1rem;
-} */
-
 .messageContent span {
   margin-bottom: 1rem;
 }
@@ -108,6 +17,7 @@ body {
   width: 100vw;
   height: 100vh;
   color: black;
+  background-color: black;
   box-sizing: border-box;
 }
 
@@ -117,56 +27,35 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border: 1px solid violet;
-}
-
-.totalContent input {
-  box-sizing: border-box;
-  width: 78%;
-  height: 4rem;
-}
-
-.form {
-  width: 100%;
-  height: 10%;
-  display: flex;
-  gap: 2%;
-}
-
-.form button {
-  width: 20%;
-  border: 1px solid black;
-  height: 4rem;
+  color: black;
+  background-color: white;
 }
 
 .messagesContent {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  max-width: 100%;
+  justify-content: center;
+  max-width: 90%;
   word-wrap: break-word;
-}
-
-.messageContent span {
-  max-width: 100%;
-  word-wrap: break-word;
-}
-
-.messagesContent {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+  border-radius: 1rem;
+  background-color: navy;
+  padding: 0.5rem;
 }
 
 .messagesContent span {
+  color: white;
+  font-size: 2.5rem;
+  width: 100%;
+  word-wrap: break-word;
+}
+
+/* .messagesContent span {
   font-size: 2.5rem;
   max-width: 38.4rem;
   word-wrap: break-word;
-  border: 1px solid aqua;
-  border-radius: 1rem;
-  padding: 0.5rem;
+
   margin-bottom: 1rem;
-}
+} */
 
 /* Exemplo de CSS para mensagens enviadas e recebidas */
 .messageSent {
@@ -180,3 +69,37 @@ body {
 }
 
 /* Outros estilos */
+
+.containerMessage {
+  padding: 0.5rem 2rem;
+  gap: 1rem;
+}
+
+.form {
+  width: 100%;
+  height: 10%;
+  display: flex;
+  gap: 2%;
+
+  justify-content: space-between;
+}
+
+.form button {
+  background-color: white;
+  max-width: 20%;
+  border: 1px solid black;
+  height: 4rem;
+  padding-right: 1rem;
+}
+
+.form input {
+  box-sizing: border-box;
+  padding-left: 1rem;
+  width: 80%;
+  height: 4rem;
+}
+
+.headerChat {
+  display: flex;
+  justify-content: space-evenly;
+}

@@ -1,0 +1,33 @@
+.header {
+  background-color: white;
+  width: 33vw;
+  height: 10rem;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  /* position: fixed; */
+  padding: 0 2rem;
+  box-sizing: border-box;
+  border-bottom: 1px solid navy;
+}
+.header button {
+  color: navy;
+  font-size: 4rem;
+  display: flex;
+  justify-content: flex-start;
+  display: flex;
+  align-items: flex-end;
+}
+
+.header h1 {
+  font-size: 4rem;
+  color: navy;
+}
+
+/* .headerContent {
+  width: 1000%;
+  display: flex;
+  justify-content: space-between;
+} */

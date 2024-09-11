@@ -1,21 +1,23 @@
 import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Homepage from "./components/Pages/Homepage";
+import Homepage from "./components/Pages/Homepage/Homepage";
 import Authentication from "./components/Authentication/Authentication";
 import "./index.css";
-import UseChat from "./components/chat/Chat";
+
 import { AuthProvider } from "./components/Authentication/hooksAuthentication/useAuthContext";
 import { ErrorProvider } from "./components/errorContext/useError";
 import ErrorDisplay from "./components/errorContext/ErrorDisplay";
 import { UserProvider } from "./components/Users/userContext";
+import Chat from "./components/chat/Chat";
+import CustomErrorPage from "./components/errorContext/ErrorRoute";
 
 type RootProps = {
   children: React.ReactNode;
 };
 
 const Root = ({ children }: RootProps) => {
-  return <div>{children}</div>;
+  return <>{children}</>; // Use fragment ao invés de div
 };
 
 const router = createBrowserRouter([
@@ -34,14 +36,16 @@ const router = createBrowserRouter([
         <Homepage />
       </Root>
     ),
+    errorElement: <CustomErrorPage />,
   },
   {
-    path: "/chat",
+    path: "/chat/:chatId",
     element: (
       <Root>
-        <UseChat />
+        <Chat />
       </Root>
     ),
+    errorElement: <CustomErrorPage />,
   },
 ]);
 

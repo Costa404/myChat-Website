@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import style from "./Authentication.module.css";
 
-import FormContent from "./hooksAuthentication/InputEmailPassword";
+import InputEmailPassword from "./hooksAuthentication/InputEmailPassword";
 import useLogin from "./hooksAuthentication/useLogin";
 
 import Btn from "./BtnAuthentication/BtnAuthentication";
 import CreateAccount from "./CreateAccount/CreateAccount";
 
-const Authentication: React.FC = () => {
+type AuthenticationProps = {
+  friendId?: string;
+};
+
+const Authentication: React.FC<AuthenticationProps> = ({ friendId }) => {
   // const { isVisible, handleButtonClick } = useCreateAccountToggle();
   const { handleLogin } = useLogin();
 
@@ -33,14 +37,14 @@ const Authentication: React.FC = () => {
           </span>
           {loginAndSignUp === "login" ? (
             <form className={style.subContentRight} onSubmit={handleLogin}>
-              <FormContent />
+              <InputEmailPassword className={style.input} />
               <h6>FORGOT PASSWORD?</h6>
               <div className={style.btnAuthentication}>
                 <button type="submit">Login</button>
               </div>
             </form>
           ) : (
-            <CreateAccount />
+            <CreateAccount friendId={friendId as string} />
           )}
         </div>
       </div>
@@ -49,3 +53,25 @@ const Authentication: React.FC = () => {
 };
 
 export default Authentication;
+
+// <input
+//   className={style.inputUser}
+//   type="text"
+//   name="userId"
+//   id="userId"
+//   placeholder="userId"
+//   value={userId ?? ""} // Converte null para string vazia
+//   onChange={(e) => setUserId(e.target.value)}
+//   required
+// />
+
+// <input
+//   className={style.inputFile}
+//   type="file"
+//   onChange={handleImgChange}
+//   // required
+// />
+
+// {selectedImg && (
+//   <img src={URL.createObjectURL(selectedImg)} alt="Selected" />
+// )}

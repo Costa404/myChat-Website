@@ -7,16 +7,11 @@ html {
   font-size: 62.5%;
 }
 
-/* .addRemove {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  justify-content: center;
-  align-items: center;
-  background-color: black;
-} */
+button:active,
+button:focus {
+  outline: none;
+  box-shadow: none;
+}
 
 button {
   height: 50px;

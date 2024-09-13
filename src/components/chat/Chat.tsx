@@ -5,12 +5,13 @@ import style from "./Chat.module.css";
 import ProfileImage from "../Users/UserImg/ProfileImg";
 import { useUser } from "../Users/userContext";
 import useScroll from "./hooksChat/useScroll";
-import Header from "../Header/Header";
+import styleHeader from "../Header/Header.module.css";
 import { Link, useParams } from "react-router-dom";
 import { IoArrowBack } from "react-icons/io5";
 import useMessages from "./hooksChat/useMessages";
 import { useGetProfileImage } from "../Users/UserImg/useGetProfileImage";
-import useFetchFriendId from "./hooksChat/useFetchFriendId";
+
+import useFetchFriendName from "./hooksChat/useFetchFriendName";
 
 const Chat: React.FC = () => {
   const { chatId } = useParams<{ chatId: string }>();
@@ -23,11 +24,13 @@ const Chat: React.FC = () => {
     chatId: validChatId,
   });
   const { messagesEndRef } = useScroll({ messages });
-  const { friendName } = useFetchFriendId();
+
   const { newMessage, setNewMessage, sendMessage } = useSendMessage({
     chatId: validChatId,
     userId: validUserId,
   });
+
+  const { userName } = useFetchFriendName();
 
   useGetProfileImage();
 
@@ -39,17 +42,20 @@ const Chat: React.FC = () => {
 
   return (
     <section className={style.totalContent}>
-      <Header
-        className={style.headerChat}
-        link={
+      <section className={styleHeader.header}>
+        <div className={styleHeader.headerLeft}>
+          {" "}
           <Link to="/homepage">
             <button>
               <IoArrowBack />
             </button>
           </Link>
-        }
-        title={friendName || "Default Friend Name"} // Use um valor padrão
-      />
+          /<h1>{userName || "Nome do Amigo Padrão"}</h1>
+        </div>
+        <div className={styleHeader.headerChatCustom}>
+          <ProfileImage userId={userId} />
+        </div>
+      </section>
 
       <div className={style.chatCustomization}>
         <div className={style.messagesCustomization}>

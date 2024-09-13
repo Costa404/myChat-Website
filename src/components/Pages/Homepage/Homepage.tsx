@@ -4,10 +4,10 @@ import useLogOut from "../../Authentication/hooksAuthentication/useLogout";
 import style from "./homepage.module.css";
 
 import { createChat } from "../../UtilityFunctions/CreateChat/createChat";
-import MainUsers from "../../UtilityFunctions/CreateChat/MainUsers";
+import MainUsers from "../../UtilityFunctions/CreateChat/MainUsers/MainUsers";
 import { useUser } from "../../Users/userContext";
 import ProfileImage from "../../Users/UserImg/ProfileImg";
-
+import styleHeader from "../../Header/Header.module.css";
 const Homepage: React.FC = () => {
   const [chatId, setChatId] = useState<string | null>(null);
   const [loading, setLoading] = useState(true); // Estado de carregamento
@@ -44,11 +44,12 @@ const Homepage: React.FC = () => {
         title="myChat"
         userImg={<ProfileImage userId={userId as string} />}
       /> */}
-      <section className={style.header}>
+
+      <section className={styleHeader.header}>
         {/* <div className={style.link}>{link}</div> */}
 
         <div>
-          <h6 className={style.userIdName}></h6>
+          <h6 className={style.userIdName}>{userId}</h6>
           <span>
             {" "}
             <ProfileImage userId={userId as string} />

@@ -22,7 +22,8 @@
 }
 
 .chatCustomization {
-  width: 33%;
+  width: 100%;
+  max-width: 50rem;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -101,5 +102,4 @@
 
 .headerChat {
   display: flex;
-  justify-content: space-evenly;
 }

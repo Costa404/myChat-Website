@@ -1,0 +1,21 @@
+.displayUsers li {
+  font-size: 2rem;
+}
+
+.displayUsers {
+  list-style-type: none;
+}
+
+.contentDispalyUsers {
+  display: flex;
+  gap: 1rem;
+}
+
+.geralContent {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.geralContent {
+  width: 100%;
+}

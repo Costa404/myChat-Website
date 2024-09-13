@@ -22,12 +22,12 @@ const ProfileImage: React.FC<ProfileImageProps> = ({ userId }) => {
         return;
       }
 
-      // const storedUrl = localStorage.getItem(`profileImage_${userId}`);
-      // if (storedUrl) {
-      //   setProfileImageUrl(storedUrl);
-      //   setLoading(false);
-      //   return;
-      // }
+      const storedUrl = localStorage.getItem(`profileImage_${userId}`);
+      if (storedUrl) {
+        setProfileImageUrl(storedUrl);
+        setLoading(false);
+        return;
+      }
 
       const imageRef = ref(storage, `profileImages/${userId}`);
       try {

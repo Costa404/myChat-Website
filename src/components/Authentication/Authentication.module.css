@@ -193,7 +193,7 @@ right
 mobile
 
 ==================== */
-
+/* 
 @media (max-width: 40rem) {
   input {
     max-width: 35rem;
@@ -236,4 +236,4 @@ mobile
     padding-top: 1rem;
     gap: 1rem;
   }
-}
+} */

@@ -7,6 +7,8 @@ const ErrorDisplay: React.FC = () => {
   return error ? (
     <div
       style={{
+        width: "100vw",
+        position: "absolute",
         backgroundColor: "red",
         color: "white",
         padding: "10px",

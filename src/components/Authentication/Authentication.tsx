@@ -6,6 +6,7 @@ import useLogin from "./hooksAuthentication/useLogin";
 
 import Btn from "./BtnAuthentication/BtnAuthentication";
 import CreateAccount from "./CreateAccount/CreateAccount";
+// import CreateAccount from "./CreateAccount/CreateAccount";
 
 type AuthenticationProps = {
   friendId?: string;
@@ -29,27 +30,22 @@ const Authentication: React.FC<AuthenticationProps> = ({ friendId }) => {
       </div> */}
       {/* <section className={style.ContainerAuth}> */}
       <div className={style.contentAuth}>
-        <div className={style.contentTop}>
+        <div className={style.contentLeft}>
           {" "}
-          <span>
-            {" "}
-            <h1>myChat</h1>
-            <span>
-              Connect with friends and the world around you on myChat.
-            </span>
-          </span>
+          <h1>myChat</h1>
+          <p>Connect with friends and the world around you on myChat.</p>
+        </div>
+
+        <div className={style.contentRight}>
           <span className={style.btnSwitch}>
             <Btn
               loginAndSignUp={loginAndSignUp}
               setLoginAndSignUp={setLoginAndSignUp}
             />
+            <InputEmailPassword className={style.input} />
           </span>
-        </div>
-
-        <div className={style.contentBottom}>
           {loginAndSignUp === "login" ? (
             <form className={style.subContentRight} onSubmit={handleLogin}>
-              <InputEmailPassword className={style.input} />
               <h6>FORGOT PASSWORD?</h6>
               <div className={style.btnAuthentication}>
                 <button type="submit">Login</button>

@@ -2,10 +2,22 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  width: 100%;
+
+  align-items: center;
+}
+
+.formCustomization input {
+  width: 90%;
 }
 
 .containerCreateAccount {
   width: 100%;
+  height: 50%;
+  max-height: 50%;
+  padding-top: 3rem;
+  display: flex;
+  justify-content: center;
 }
 
 .formCustomization img {
@@ -20,12 +32,9 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  width: 100%;
+  width: 90%;
   box-sizing: border-box;
-}
-
-.inputFieldContainer input {
-  border: none;
+  margin: 0 auto;
 }
 
 .inputUserId {

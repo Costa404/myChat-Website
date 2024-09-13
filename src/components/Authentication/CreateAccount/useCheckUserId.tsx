@@ -20,25 +20,27 @@ export const useCheckUserId = (userId: string, friendId: string) => {
   const currentUser = auth.currentUser;
   const { setUserId } = useUser();
 
-  const checkUserId = async () => {
+  const checkUserId = async (): Promise<boolean> => {
     if (!currentUser) {
       console.error("currentUser está indefinido");
-      return;
+      setError("Usuário não autenticado.");
+      return false;
     }
     if (!userId) {
       console.error("userId está indefinido");
-      return;
+      setError("ID de usuário não fornecido.");
+      return false;
     }
 
-    const userEmail = currentUser.email; // Use o e-mail do usuário
+    const userEmail = auth.currentUser.email;
 
     if (!userEmail) {
       console.error("E-mail do usuário está indefinido");
-      return;
+      setError("E-mail do usuário não encontrado.");
+      return false;
     }
 
     try {
-      // Salva o userId associado ao e-mail do usuário
       const userRef = doc(db, "users", userEmail);
       const userDoc = await getDoc(userRef);
 
@@ -46,38 +48,37 @@ export const useCheckUserId = (userId: string, friendId: string) => {
         const userData = userDoc.data();
         if (userData && userData.userId === userId) {
           console.log("O userId já está associado a este e-mail.");
-          return;
+          return true;
         }
       }
 
-      // Verifica se o userId já está associado a outro e-mail
       const usersRef = collection(db, "users");
       const userQuery = query(usersRef, where("userId", "==", userId));
       const querySnapshot = await getDocs(userQuery);
 
       if (!querySnapshot.empty) {
         console.log("O userId já está associado a outro e-mail.");
-        return;
+        return false;
       }
 
-      // Atualiza ou cria o documento do usuário
       await setDoc(
         userRef,
         {
-          userId: userId, // Salva o userId personalizado
+          userId: userId,
           friendId: friendId ?? null,
         },
         { merge: true }
-      ); // Usando merge para não sobrescrever outros dados
+      );
 
-      // Atualiza o userId no contexto
       setUserId(userId);
 
       navigate("/homepage");
       console.log("UserID adicionado ou atualizado com sucesso:", userId);
+      return true;
     } catch (error) {
       console.error("Erro ao adicionar/atualizar o UserID:", error);
       setError("Erro ao adicionar/atualizar o UserID.");
+      return false;
     }
   };
 

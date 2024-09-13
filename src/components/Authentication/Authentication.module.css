@@ -1,6 +1,5 @@
 .mainContainer {
-  width: 100%;
-  max-width: 50em;
+  width: 100vw;
   height: 100vh;
   display: flex;
   background-color: #f2f4f7;
@@ -17,58 +16,11 @@ input::placeholder {
   font-size: 1.3rem;
 }
 
-/* .geralStyle img {
-  width: 5rem;
-
-  border-radius: 100%;
-} */
-
-/* ====================
-
-left
-
-==================== */
-/* .leftContainer {
-  height: 100vh;
-  display: flex;
-  width: 50vw;
-  color: black;
-  align-items: center;
-}
-
-.contentLeft {
-  font-size: 2.5rem;
-  width: 35rem;
-  display: flex;
-  flex-direction: column;
-
-  padding: 0 12.5rem;
-}
-.contentLeft h1 {
-  font-size: 9rem;
-}
-
-.contentLeft span {
-  color: black;
-  font-weight: 600;
-  width: 70vw;
-}
-
-.contentLeft {
-  color: navy;
-} */
-/* ====================
-
-right
-
-==================== */
-
 .ContainerAuth {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  gap: 4rem;
 
   /* font-weight: 700;
   border: 1px solid black;
@@ -80,9 +32,9 @@ right
 }
 .contentAuth {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  /* gap: 3.5rem; */
+  gap: 3.5rem;
 }
 
 .contentAuth input {
@@ -93,59 +45,79 @@ right
 }
 
 .contentAuth span {
-  height: 30vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding-bottom: 3rem;
 }
 
 .contentAuth h6 {
   font-size: 1.5rem;
   font-weight: 700;
 }
+/* ===============================
 
-.contentTop {
+contentLeft
+
+=============================== */
+
+.contentLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  width: 60%;
+
+  max-height: 30vh;
+}
+
+.contentLeft p {
+  max-width: 75%;
+  margin: 0 auto;
+  font-weight: 700;
+  color: black;
+  display: flex;
+  font-size: 4rem;
+}
+
+.contentLeft h1 {
+  color: navy;
+  font-size: 8rem;
+  display: flex;
+  justify-content: center;
+}
+
+/* ===============================
+
+contentRight
+
+=============================== */
+
+.contentRight {
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
-
-  max-height: 50vh;
-}
-
-.contentBottom {
-  max-height: 50vh;
-}
-
-.contentTop span {
-  max-width: 85%;
-  margin: 0 auto;
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.contentTop h1 {
-  color: navy;
-  font-size: 7rem;
-  display: flex;
-  justify-content: center;
-  padding-top: 10rem;
-}
-
-.contentTop span {
-  display: flex;
-  gap: 4rem;
+  max-width: 40%;
 }
 
 .btnSwitch {
-  padding-top: 5rem;
+  display: flex;
+  gap: 2rem;
+  height: 50%;
+  max-height: 50%;
+}
+
+.subContentRight {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  width: 100%;
+  height: 50%;
+  padding-top: 3rem;
 }
 
 .containerRight {
@@ -174,14 +146,9 @@ right
   width: 100%;
 }
 
-.subContentRight {
-  display: flex;
-  flex-direction: column;
-  gap: 3.5rem;
-  align-items: center;
+.subContentRight input {
   width: 100%;
 }
 
-.subContentRight input {
-  width: 100%;
+@media only screen and (max-width: 768px) {
 }

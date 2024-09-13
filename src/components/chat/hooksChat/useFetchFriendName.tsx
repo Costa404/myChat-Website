@@ -11,11 +11,9 @@
 //   return userId === messageUserId ? "message-sent" : "message-received";
 // };
 
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useUser } from "../../Users/userContext";
-import { doc, getDoc } from "firebase/firestore";
-import { db } from "../../../firebase";
 
 const useFetchFriendName = () => {
   const { chatId } = useParams<{ chatId: string }>();

@@ -17,7 +17,7 @@ const MainUsers: React.FC<MainUsersProps> = ({
     users,
     searchQuery,
     setSearchQuery,
-    isLoading,
+
     setSelectedUserId,
     selectedUserId,
     handleSearch,

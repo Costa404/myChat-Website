@@ -39,36 +39,26 @@ const Homepage: React.FC = () => {
 
   return (
     <section className={style.geralContent}>
-      {/* <Header
-        userIdName={userId}
-        title="myChat"
-        userImg={<ProfileImage userId={userId as string} />}
-      /> */}
-
-      <section className={styleHeader.header}>
-        {/* <div className={style.link}>{link}</div> */}
-
-        <div>
-          <h6 className={style.userIdName}>{userId}</h6>
-          <span>
-            {" "}
-            <ProfileImage userId={userId as string} />
-          </span>
-        </div>
-      </section>
+      <div className={styleHeader.header}>
+        <h6>{userId}</h6>
+        <span>
+          <ProfileImage userId={userId as string} />
+        </span>
+      </div>
       <div className={style.homepageCustomization}>
         <MainUsers
           currentUserId={userId || "Default "}
           onStartChat={startChat}
         />
         <button onClick={handleLogOut}>LogOut</button>
-      </div>
-      <div>
-        {chatId && (
-          <Link to={`/chat/${chatId}`}>
-            <button>Ir para Chat</button>
-          </Link>
-        )}
+
+        <div>
+          {chatId && (
+            <Link to={`/chat/${chatId}`}>
+              <button>Ir para Chat</button>
+            </Link>
+          )}
+        </div>
       </div>
     </section>
   );

@@ -28,7 +28,7 @@ const MainUsers: React.FC<MainUsersProps> = ({
   }, [handleSearch]);
 
   return (
-    <section className={style.geralContent}>
+    <section className={style.geralContentUsers}>
       <input
         type="text"
         value={searchQuery}

@@ -6,7 +6,10 @@
 }
 
 .geralContent {
-  width: 100vw;
+  width: 100%;
+  max-width: 50rem;
+  margin: 0 auto;
+  background-color: pink;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -20,8 +23,9 @@
 }
 
 .homepageCustomization {
-  width: 50rem;
+  width: 100%;
   max-width: 50rem;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   gap: 2rem;

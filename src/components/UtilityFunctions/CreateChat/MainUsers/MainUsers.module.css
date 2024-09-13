@@ -11,11 +11,11 @@
   gap: 1rem;
 }
 
-.geralContent {
+/* .geralContentUsers {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-}
+} */
 .geralContent {
   width: 100%;
 }

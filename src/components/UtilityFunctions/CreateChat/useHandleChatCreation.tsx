@@ -5,6 +5,7 @@ export const useHandleChatCreation = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [showNewChatButton, setShowNewChatButton] = useState<boolean>(false);
   const [selectedFriendId, setSelectedFriendId] = useState<string | null>(null);
+  const [chatId, setChatId] = useState<string | null>(null);
 
   return {
     newChatId,
@@ -15,5 +16,7 @@ export const useHandleChatCreation = () => {
     setShowNewChatButton,
     selectedFriendId,
     setSelectedFriendId,
+    chatId,
+    setChatId,
   };
 };

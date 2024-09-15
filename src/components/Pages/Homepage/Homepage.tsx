@@ -1,3 +1,49 @@
+// import React, { useState, useEffect } from "react";
+// import useLogOut from "../../Authentication/hooksAuthentication/useLogout";
+// import style from "./homepage.module.css";
+// import MainUsers from "../../UtilityFunctions/CreateChat/MainUsers/MainUsers";
+// import { useUser } from "../../Users/userContext";
+// import ProfileImage from "../../Users/UserImg/ProfileImg";
+// import styleHeader from "../../Header/Header.module.css";
+// import { useStartChat } from "../../UtilityFunctions/CreateChat/useStartChat";
+
+// const Homepage: React.FC = () => {
+//   const { startChat, chatId } = useStartChat();
+//   const [loading, setLoading] = useState(true);
+//   const { handleLogOut } = useLogOut();
+//   const { userId } = useUser();
+
+//   useEffect(() => {
+//     if (userId) {
+//       setLoading(false);
+//     }
+//   }, [userId]);
+
+//   if (loading) {
+//     return <div>Carregando...</div>;
+//   }
+
+//   return (
+//     <section className={style.geralContent}>
+//       <div className={styleHeader.header}>
+//         <h6>{userId}</h6>
+//         <button onClick={handleLogOut}>LogOut</button>
+//         <span>
+//           <ProfileImage userId={userId as string} />
+//         </span>
+//       </div>
+//       <div className={style.homepageCustomization}>
+//         <MainUsers
+//           currentUserId={userId || "Default"}
+//           onStartChat={startChat}
+//         />
+//         {chatId && <div>Chat ID: {chatId}</div>}
+//       </div>
+//     </section>
+//   );
+// };
+
+// export default Homepage;
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import useLogOut from "../../Authentication/hooksAuthentication/useLogout";
@@ -8,8 +54,11 @@ import MainUsers from "../../UtilityFunctions/CreateChat/MainUsers/MainUsers";
 import { useUser } from "../../Users/userContext";
 import ProfileImage from "../../Users/UserImg/ProfileImg";
 import styleHeader from "../../Header/Header.module.css";
+
+import { useHandleChatCreation } from "../../UtilityFunctions/CreateChat/useHandleChatCreation";
 const Homepage: React.FC = () => {
-  const [chatId, setChatId] = useState<string | null>(null);
+  // const [chatId, setChatId] = useState<string | null>(null);
+  const { chatId, setChatId } = useHandleChatCreation();
   const [loading, setLoading] = useState(true); // Estado de carregamento
   const { handleLogOut } = useLogOut();
   const { userId } = useUser();
@@ -41,6 +90,7 @@ const Homepage: React.FC = () => {
     <section className={style.geralContent}>
       <div className={styleHeader.header}>
         <h6>{userId}</h6>
+
         <span>
           <ProfileImage userId={userId as string} />
         </span>
@@ -50,7 +100,6 @@ const Homepage: React.FC = () => {
           currentUserId={userId || "Default "}
           onStartChat={startChat}
         />
-        <button onClick={handleLogOut}>LogOut</button>
 
         <div>
           {chatId && (
@@ -59,6 +108,7 @@ const Homepage: React.FC = () => {
             </Link>
           )}
         </div>
+        <button onClick={handleLogOut}>LogOut</button>
       </div>
     </section>
   );

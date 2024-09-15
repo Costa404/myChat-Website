@@ -9,11 +9,15 @@
   width: 100%;
   max-width: 50rem;
   margin: 0 auto;
-  background-color: pink;
   height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: white;
+}
+
+body {
+  background: linear-gradient(to right, #00002e, white);
 }
 
 .geralContent h6 {
@@ -34,3 +38,43 @@
 .friendCustomization {
   background-color: red;
 }
+
+.homepageCustomization button {
+  width: 100%;
+  color: navy;
+}
+
+/* .test {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+.test img {
+  max-width: 30vw;
+  width: 30vw;
+  min-height: 50vh;
+  max-height: 50vh;
+  position: absolute;
+  z-index: 1;
+}
+.firstImg {
+  left: 0;
+
+  transform: scaleY(-1);
+}
+
+.secondImg {
+  right: 0;
+}
+
+.thirdImg {
+  right: 0;
+  bottom: 0;
+  transform: scaleX(-1);
+}
+
+.fourthImg {
+  left: 0;
+  bottom: 0;
+} */

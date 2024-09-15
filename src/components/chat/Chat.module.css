@@ -17,7 +17,7 @@
   width: 100vw;
   height: 100vh;
   color: black;
-  background-color: black;
+  background: linear-gradient(to right, #00002e, white);
   box-sizing: border-box;
 }
 

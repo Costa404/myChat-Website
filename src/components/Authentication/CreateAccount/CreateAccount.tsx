@@ -6,6 +6,8 @@ import useSignup from "./useSignup";
 import { useImgUpload } from "../../Users/UserImg/useImgUpload";
 
 import { useCheckUserId } from "./useCheckUserId";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 type CreateAccountType = {
   className?: string;
@@ -17,6 +19,9 @@ const CreateAccount: React.FC<CreateAccountType> = ({ friendId }) => {
   const { userId, setUserId } = useUser();
   const { handleSignUp } = useSignup();
   const { selectedImg, handleImgChange, uploadImage } = useImgUpload();
+  const navigate = useNavigate();
+  const [isSignUpComplete, setIsSignedUpComplete] = useState(false);
+
   // const [emailPassword, setEmailPassword] = useState<"defined" | "undefined">(
   //   "undefined"
   // );
@@ -33,15 +38,22 @@ const CreateAccount: React.FC<CreateAccountType> = ({ friendId }) => {
   //   setEmailPassword("defined");
   // };
 
+  useEffect(() => {
+    if (userId && isSignUpComplete) {
+      checkUserId(); // Só é chamado quando o userId é atualizado
+    }
+  }, [isSignUpComplete, userId]);
+
   // Função para lidar com a segunda etapa
   const handleSecondStep = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     await uploadImage();
-    await handleSignUp();
-    if (userId) {
-      await checkUserId(); // Verifica se userId é válido
-    } else {
-      console.error("userId está indefinido.");
+
+    const signupSuccess = await handleSignUp(userId as string);
+
+    if (signupSuccess) {
+      setIsSignedUpComplete(true);
+      navigate("/homepage"); // Navega para a homepage apenas se o signup tiver sucesso
     }
   };
 

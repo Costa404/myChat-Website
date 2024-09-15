@@ -4,6 +4,9 @@
 
 .displayUsers {
   list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .contentDispalyUsers {
@@ -11,11 +14,11 @@
   gap: 1rem;
 }
 
-/* .geralContentUsers {
+.geralContentUsers {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-} */
+}
 .geralContent {
   width: 100%;
 }

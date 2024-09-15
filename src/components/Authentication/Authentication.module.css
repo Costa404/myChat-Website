@@ -2,10 +2,12 @@
   width: 100vw;
   height: 100vh;
   display: flex;
-  background-color: #f2f4f7;
+  background-color: whitesmoke;
   display: flex;
   justify-content: center;
-  margin: 0 auto;
+  background: linear-gradient(to right, #00002e, white);
+
+  padding: 0;
 }
 
 input {
@@ -42,12 +44,14 @@ input::placeholder {
   border-radius: 0.5rem;
   border: 0.1px solid gainsboro;
   border-width: 0.1px;
+  width: 25rem;
 }
 
 .contentAuth span {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  align-items: center;
 }
 
 .contentAuth h6 {
@@ -68,8 +72,7 @@ contentLeft
   align-items: center;
   justify-content: center;
   width: 60%;
-
-  max-height: 30vh;
+  text-align: right;
 }
 
 .contentLeft p {
@@ -79,10 +82,13 @@ contentLeft
   color: black;
   display: flex;
   font-size: 4rem;
+  color: white;
 }
 
 .contentLeft h1 {
-  color: navy;
+  width: 75%;
+  max-width: 75%;
+  color: white;
   font-size: 8rem;
   display: flex;
   justify-content: center;
@@ -100,14 +106,16 @@ contentRight
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  max-width: 40%;
+  min-width: 40%;
 }
 
 .btnSwitch {
   display: flex;
+  justify-content: center;
   gap: 2rem;
   height: 50%;
   max-height: 50%;
+  width: 100%;
 }
 
 .subContentRight {
@@ -128,7 +136,7 @@ contentRight
 }
 
 .btnAuthentication {
-  width: 100%;
+  width: 26rem;
 }
 
 .btnAuthentication button {
@@ -150,5 +158,135 @@ contentRight
   width: 100%;
 }
 
-@media only screen and (max-width: 768px) {
+.mainContainer {
+  position: relative;
 }
+
+.firstImg,
+.secondImg,
+.thirdImg,
+.fourthImg {
+  width: 30vw;
+  min-height: 50vh;
+  max-height: 50vh;
+  position: absolute;
+  z-index: 1;
+}
+
+.firstImg {
+  left: 0;
+
+  transform: scaleY(-1);
+}
+
+.secondImg {
+  right: 0;
+}
+
+.thirdImg {
+  right: 0;
+  bottom: 0;
+  transform: scaleX(-1);
+}
+
+.fourthImg {
+  left: 0;
+  bottom: 0;
+}
+
+@keyframes slideOutAndIn {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-30vw);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@media only screen and (max-width: 630px) {
+  .contentAuth {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .contentLeft p {
+    min-width: 5%;
+
+    font-size: 2rem;
+  }
+
+  .contentLeft h1 {
+    font-size: 4rem;
+  }
+
+  .contentLeft {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+    height: 40vh;
+    width: 100%;
+  }
+}
+
+/* .mainContainer {
+  position: relative;
+}
+
+.mainContainer img {
+  width: 30vw;
+  min-height: 50vh;
+  max-height: 50vh;
+  position: absolute;
+  z-index: 1;
+  mask-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+.firstImg {
+  left: 0;
+  animation: slideOutAndIn 4s ease-in-out infinite;
+  transform: scaleY(-1);
+}
+
+.secondImg {
+  right: 0;
+  mask-image: linear-gradient(
+    to left,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0) 100%
+  ) !important;
+}
+
+.thirdImg {
+  right: 0;
+  bottom: 0;
+  transform: scaleX(-1);
+}
+
+.fourthImg {
+  left: 0;
+  bottom: 0;
+  animation: slideOutAndIn 4s ease-in-out infinite;
+}
+
+@keyframes slideOutAndIn {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-30vw);
+  }
+  100% {
+    transform: translateX(0);
+  }
+} */

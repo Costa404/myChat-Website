@@ -6,6 +6,7 @@ import useLogin from "./hooksAuthentication/useLogin";
 
 import Btn from "./BtnAuthentication/BtnAuthentication";
 import CreateAccount from "./CreateAccount/CreateAccount";
+
 // import CreateAccount from "./CreateAccount/CreateAccount";
 
 type AuthenticationProps = {
@@ -23,6 +24,11 @@ const Authentication: React.FC<AuthenticationProps> = ({ friendId }) => {
 
   return (
     <section className={style.mainContainer}>
+      {/* <img className={style.firstImg} src={wallpapperAuthen} alt="" />
+      <img className={style.secondImg} src={wallpapperAuthen} alt="" />
+      <img className={style.thirdImg} src={wallpapperAuthen} alt="" />
+      <img className={style.fourthImg} src={wallpapperAuthen} alt="" /> */}
+      {/* <img className={style.fourthImg} src={wallpapperAuthen} alt="" /> */}
       {/* <div className={style.leftContainer}>
         <div className={style.contentLeft}> */}
 

@@ -10,11 +10,11 @@ import {
 import { db } from "../../../firebase";
 import { getAuth } from "firebase/auth";
 import { useUser } from "../../Users/userContext";
-import { useNavigate } from "react-router-dom";
+
 import { useError } from "../../errorContext/useError";
 
 export const useCheckUserId = (userId: string, friendId: string) => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const { setError } = useError();
   const auth = getAuth();
   const currentUser = auth.currentUser;
@@ -72,7 +72,7 @@ export const useCheckUserId = (userId: string, friendId: string) => {
 
       setUserId(userId);
 
-      navigate("/homepage");
+      // navigate("/homepage");
       console.log("UserID adicionado ou atualizado com sucesso:", userId);
       return true;
     } catch (error) {

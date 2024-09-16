@@ -50,7 +50,7 @@ const Chat: React.FC = () => {
               <IoArrowBack />
             </button>
           </Link>
-          /<h1>{userName || "Nome do Amigo Padrão"}</h1>
+          <h1>{userName || "Nome do Amigo Padrão"}</h1>
         </div>
         <div className={styleHeader.headerChatCustom}>
           <ProfileImage userId={userId} />

@@ -44,47 +44,39 @@
 // };
 
 // export default Homepage;
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
+
 import useLogOut from "../../Authentication/hooksAuthentication/useLogout";
 import style from "./homepage.module.css";
 
-import { createChat } from "../../UtilityFunctions/CreateChat/createChat";
 import MainUsers from "../../UtilityFunctions/CreateChat/MainUsers/MainUsers";
 import { useUser } from "../../Users/userContext";
 import ProfileImage from "../../Users/UserImg/ProfileImg";
 import styleHeader from "../../Header/Header.module.css";
 
-import { useHandleChatCreation } from "../../UtilityFunctions/CreateChat/useHandleChatCreation";
 const Homepage: React.FC = () => {
   // const [chatId, setChatId] = useState<string | null>(null);
-  const { chatId, setChatId } = useHandleChatCreation();
-  const [loading, setLoading] = useState(true); // Estado de carregamento
+  // Estado de carregamento
   const { handleLogOut } = useLogOut();
   const { userId } = useUser();
 
-  useEffect(() => {
-    if (userId) {
-      setLoading(false); // Define o carregamento como falso quando o userId estiver disponível
-    }
-  }, [userId]);
+  // useEffect(() => {
+  //   if (userId) {
+  //     setLoading(false); // Define o carregamento como falso quando o userId estiver disponível
+  //   }
+  // }, [userId]);
 
-  const startChat = async (friendId: string) => {
-    if (!userId) {
-      console.error("User ID não está disponível.");
-      return;
-    }
-
-    const newChatId = await createChat(userId, friendId);
-    if (newChatId) {
-      setChatId(newChatId); // Atualize o estado com o chatId gerado ou existente
-    }
-  };
+  //   const newChatId = await createChat(userId, friendId);
+  //   console.log("aqui", newChatId);
+  //   if (newChatId) {
+  //     setChatId(newChatId); // Atualize o estado com o chatId gerado ou existente
+  //   }
+  // };
 
   // Se o estado de carregamento for verdadeiro, mostra o indicador de carregamento
-  if (loading) {
-    return <div>Carregando...</div>;
-  }
+  // if (loading) {
+  //   return <div>Carregando...</div>;
+  // }
 
   return (
     <section className={style.geralContent}>
@@ -98,17 +90,19 @@ const Homepage: React.FC = () => {
       <div className={style.homepageCustomization}>
         <MainUsers
           currentUserId={userId || "Default "}
-          onStartChat={startChat}
+          // onStartChat={startChat}
         />
 
-        <div>
+        {/* <div>
           {chatId && (
             <Link to={`/chat/${chatId}`}>
               <button>Ir para Chat</button>
             </Link>
           )}
+        </div> */}
+        <div className={style.btnBottom}>
+          <button onClick={handleLogOut}>LogOut</button>
         </div>
-        <button onClick={handleLogOut}>LogOut</button>
       </div>
     </section>
   );

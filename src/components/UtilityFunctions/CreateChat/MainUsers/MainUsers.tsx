@@ -3,8 +3,8 @@ import useSearchUsers from "../useSearchUsers";
 import style from "./MainUsers.module.css";
 import ProfileImage from "../../../Users/UserImg/ProfileImg";
 import { useNavigate } from "react-router-dom";
-// Supondo que createChat seja uma função que cria um chat no Firebase
-import { useUser } from "../../../Users/userContext"; // Pegar o userId do contexto
+
+import { useUser } from "../../../Users/userContext";
 import { createChat } from "../createChat";
 
 interface MainUsersProps {
@@ -12,15 +12,9 @@ interface MainUsersProps {
 }
 
 const MainUsers: React.FC<MainUsersProps> = () => {
-  const {
-    users,
-    searchQuery,
-    setSearchQuery,
-    setSelectedUserId,
-    selectedUserId,
-  } = useSearchUsers();
+  const { users, setSelectedUserId } = useSearchUsers();
 
-  const { userId } = useUser(); // Pegando o userId do contexto
+  const { userId } = useUser();
   const navigate = useNavigate();
 
   const startChat = async (friendId: string) => {
@@ -45,37 +39,20 @@ const MainUsers: React.FC<MainUsersProps> = () => {
     console.log("Usuário selecionado:", userId);
     startChat(userId); // Iniciar chat ao clicar no usuário
   };
-
   return (
     <section className={style.geralContentUsers}>
-      <input
-        type="text"
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-        placeholder="Buscar usuários..."
-      />
-
       <ul className={style.displayUsers}>
         {users.map((user) => (
           <div
             key={user.userId}
             className={style.contentDispalyUsers}
-            onClick={() => handleClick(user.userId)} // Iniciar chat ao clicar no usuário
+            onClick={() => handleClick(user.userId)}
           >
             <ProfileImage userId={user.userId} />
             <span>{user.userId}</span>
           </div>
         ))}
       </ul>
-
-      {selectedUserId && (
-        <div>
-          <p>Selecionado: {selectedUserId}</p>
-          <button onClick={() => startChat(selectedUserId)}>
-            Iniciar Chat
-          </button>
-        </div>
-      )}
     </section>
   );
 };

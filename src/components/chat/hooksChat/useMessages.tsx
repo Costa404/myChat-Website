@@ -12,6 +12,7 @@ import {
 import { db } from "../../../firebase";
 import { getAuth } from "firebase/auth";
 import { useUser } from "../../Users/userContext";
+import JSEncrypt from "jsencrypt"; // Biblioteca de criptografia
 
 export interface MessageProps {
   id: string;
@@ -20,6 +21,7 @@ export interface MessageProps {
   timestamp: Timestamp;
   chatId: string;
 }
+
 type useSendMessagesProps = {
   userId: string;
   chatId: string;
@@ -28,14 +30,21 @@ type useSendMessagesProps = {
 const useMessages = ({ userId, chatId }: useSendMessagesProps) => {
   const [messages, setMessages] = useState<MessageProps[]>([]);
   const { setUserId } = useUser();
+  const auth = getAuth();
+  const currentUser = auth.currentUser;
+
+  // Função para descriptografar a mensagem
+  const decryptMessage = (encryptedMessage: string, privateKey: string) => {
+    const decryptor = new JSEncrypt();
+    decryptor.setPrivateKey(privateKey);
+    return decryptor.decrypt(encryptedMessage);
+  };
 
   useEffect(() => {
     if (!userId || !chatId) {
       console.error("userId or chatId is missing");
       return;
     }
-    const auth = getAuth();
-    const currentUser = auth.currentUser;
 
     // Recupere o userId personalizado do Firestore
     const fetchUserId = async () => {
@@ -58,11 +67,11 @@ const useMessages = ({ userId, chatId }: useSendMessagesProps) => {
     const q = query(
       collection(db, "messages"),
       orderBy("timestamp"),
-      where("chatId", "==", chatId) // Filtra as mensagens pelo chatId
+      where("chatId", "==", chatId)
     );
 
     // Configura um ouvinte em tempo real para mensagens
-    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+    const unsubscribe = onSnapshot(q, async (querySnapshot) => {
       const messagesArray: MessageProps[] = [];
       querySnapshot.forEach((doc) => {
         const messageData = doc.data();
@@ -71,98 +80,34 @@ const useMessages = ({ userId, chatId }: useSendMessagesProps) => {
           ...(messageData as Omit<MessageProps, "id">),
         });
       });
-      setMessages(messagesArray);
+
+      // Recupera a chave privada do localStorage
+      const privateKey = localStorage.getItem("privateKey");
+      console.log("Private key retrieved:", privateKey); // Adicione este log aqui
+
+      if (!privateKey) {
+        console.error("Private key is not available in localStorage.");
+        return;
+      }
+
+      // Descriptografa as mensagens
+      const decryptedMessages = messagesArray.map((msg) => {
+        const decryptedText = decryptMessage(msg.text, privateKey);
+
+        if (!decryptedText) {
+          console.error("Decryption failed for message:", msg.text);
+        }
+        return { ...msg, text: decryptedText || "Error decrypting message" };
+      });
+
+      setMessages(decryptedMessages);
     });
 
     // Limpa o ouvinte quando o componente é desmontado
     return () => unsubscribe();
-  }, [chatId, userId, setUserId]);
+  }, [chatId, userId, setUserId, currentUser]);
 
   return { messages, userId, chatId };
 };
 
 export default useMessages;
-
-// import React from "react";
-
-// import useSendMessage from "./hooksChat/useSendMessage";
-// import style from "./Chat.module.css";
-// import ProfileImage from "../Users/UserImg/ProfileImg";
-// import { useUser } from "../Users/userContext";
-// import useScroll from "./hooksChat/useScroll";
-// import Header from "../Header/Header";
-// import { Link, useParams } from "react-router-dom";
-// import { IoArrowBack } from "react-icons/io5";
-// import useMessages from "./hooksChat/useMessages";
-
-// const Chat: React.FC = () => {
-//   const { chatId } = useParams<{ chatId: string }>();
-//   const { userId } = useUser();
-//   const validChatId = chatId ?? "";
-//   const validUserId = userId ?? "";
-
-//   const { messages } = useMessages({
-//     userId: validUserId,
-//     chatId: validChatId,
-//   });
-//   const { messagesEndRef } = useScroll({ messages });
-
-//   const { newMessage, setNewMessage, sendMessage } = useSendMessage({
-//     chatId: validChatId,
-//     userId: validUserId,
-//   });
-
-//   if (!chatId || !userId) {
-//     // Handle cases where chatId or userId are undefined
-//     console.error("chatId or userId is undefined");
-//     return null;
-//   }
-
-//   return (
-//     <section className={style.totalContent}>
-//       <Header
-//         link={
-//           <Link to="/homepage">
-//             <button>
-//               <IoArrowBack />
-//             </button>
-//           </Link>
-//         }
-//       />
-//       <div className={style.chatCustomization}>
-//         <div className={style.messagesCustomization}>
-//           {messages.map((message) => {
-//             const alignmentClass =
-//               validUserId === message.userId
-//                 ? style.messageSent
-//                 : style.messageReceived;
-
-//             return (
-//               <div
-//                 className={`${style.containerMessage} ${alignmentClass}`}
-//                 key={message.id}
-//               >
-//                 <ProfileImage userId={message.userId} />
-//                 <span className={style.messagesContent}>
-//                   <span>{message.text}</span>
-//                 </span>
-//               </div>
-//             );
-//           })}
-//           <div ref={messagesEndRef}></div>
-//         </div>
-//         <form onSubmit={sendMessage} className={style.form}>
-//           <input
-//             type="text"
-//             value={newMessage}
-//             onChange={(e) => setNewMessage(e.target.value)}
-//             placeholder="Type a message..."
-//           />
-//           <button type="submit">Send</button>
-//         </form>
-//       </div>
-//     </section>
-//   );
-// };
-
-// export default Chat;

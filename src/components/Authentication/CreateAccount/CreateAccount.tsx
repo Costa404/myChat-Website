@@ -8,6 +8,7 @@ import { useImgUpload } from "../../Users/UserImg/useImgUpload";
 import { useCheckUserId } from "./useCheckUserId";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+// import { useError } from "../../errorContext/useError";
 
 type CreateAccountType = {
   className?: string;
@@ -21,22 +22,9 @@ const CreateAccount: React.FC<CreateAccountType> = ({ friendId }) => {
   const { selectedImg, handleImgChange, uploadImage } = useImgUpload();
   const navigate = useNavigate();
   const [isSignUpComplete, setIsSignedUpComplete] = useState(false);
+  // const { setError } = useError();
 
-  // const [emailPassword, setEmailPassword] = useState<"defined" | "undefined">(
-  //   "undefined"
-  // );
   const { checkUserId } = useCheckUserId(userId as string, friendId);
-
-  // // Função para lidar com a primeira etapa
-  // const handleFirstStep = async (e: React.FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-  //   await handleSignUp(); // Aqui você passa o userId
-  //   // Muda o estado para "defined" após a primeira etapa
-  //   if (!handleSignUp) {
-  //     return;
-  //   }
-  //   setEmailPassword("defined");
-  // };
 
   useEffect(() => {
     if (userId && isSignUpComplete) {
@@ -47,23 +35,27 @@ const CreateAccount: React.FC<CreateAccountType> = ({ friendId }) => {
   // Função para lidar com a segunda etapa
   const handleSecondStep = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    await uploadImage();
+
+    if (!userId) {
+      return;
+    }
+    // Validação do userId
+    // if (userId.charAt(0) !== userId.charAt(0).toLowerCase()) {
+    //   setError("O nome de usuário deve começar com uma letra minúscula.");
+    //   return; // Impede o envio se a validação falhar
+    // }
 
     const signupSuccess = await handleSignUp(userId as string);
 
     if (signupSuccess) {
       setIsSignedUpComplete(true);
+      await uploadImage();
       navigate("/homepage"); // Navega para a homepage apenas se o signup tiver sucesso
     }
   };
 
   return (
     <div className={style.containerCreateAccount}>
-      {/* <form
-        // onSubmit={handleFirstStep}
-        className={style.formCustomization}
-      ></form> */}
-
       <form onSubmit={handleSecondStep} className={style.formCustomization}>
         <input
           className={style.inputUser}
@@ -79,6 +71,7 @@ const CreateAccount: React.FC<CreateAccountType> = ({ friendId }) => {
           className={style.inputFile}
           type="file"
           onChange={handleImgChange}
+          required
         />
         {selectedImg && (
           <img src={URL.createObjectURL(selectedImg)} alt="Selected" />

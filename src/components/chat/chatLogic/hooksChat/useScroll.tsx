@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import type { MessageProps } from "./useMessages";
+import { MessageProps } from "../hooksChat/useMessages";
 
 interface useScrollProps {
   messages: MessageProps[];

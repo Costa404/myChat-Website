@@ -24,17 +24,6 @@ const Authentication: React.FC<AuthenticationProps> = ({ friendId }) => {
 
   return (
     <section className={style.mainContainer}>
-      {/* <img className={style.firstImg} src={wallpapperAuthen} alt="" />
-      <img className={style.secondImg} src={wallpapperAuthen} alt="" />
-      <img className={style.thirdImg} src={wallpapperAuthen} alt="" />
-      <img className={style.fourthImg} src={wallpapperAuthen} alt="" /> */}
-      {/* <img className={style.fourthImg} src={wallpapperAuthen} alt="" /> */}
-      {/* <div className={style.leftContainer}>
-        <div className={style.contentLeft}> */}
-
-      {/* </div>
-      </div> */}
-      {/* <section className={style.ContainerAuth}> */}
       <div className={style.contentAuth}>
         <div className={style.contentLeft}>
           {" "}

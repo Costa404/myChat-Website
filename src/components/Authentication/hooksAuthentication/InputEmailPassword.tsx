@@ -1,6 +1,7 @@
 import useLogin from "./useLogin";
 
 import style from "../CreateAccount/CreateAccount.module.css";
+import { useEffect, useRef } from "react";
 type InputEmailPasswordType = {
   className?: string;
   children?: React.ReactNode;
@@ -8,10 +9,19 @@ type InputEmailPasswordType = {
 
 const InputEmailPassword: React.FC<InputEmailPasswordType> = () => {
   const { email, setEmail, password, setPassword } = useLogin();
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    // Focar no input quando o componente for montado
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, []);
 
   return (
     <div className={style.inputFieldContainer}>
       <input
+        ref={inputRef}
         placeholder="Email:"
         type="email"
         name="email"

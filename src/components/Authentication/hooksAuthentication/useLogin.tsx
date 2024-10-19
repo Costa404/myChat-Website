@@ -7,7 +7,6 @@ import { useGetProfileImage } from "../../Users/UserImg/useGetProfileImage";
 import { getDoc, doc } from "firebase/firestore";
 import { useUser } from "../../Users/userContext";
 import { db } from "../../../firebase";
-import { useFetchPrivateKey } from "../../chat/chatLogic/UtilityFunctionsChat/useFetchPrivateKey";
 
 // import { handlePrivateKey } from "../../chat/hooksChat/EncryptFiles/generateKeyPair";
 
@@ -16,8 +15,7 @@ const useLogin = () => {
   const navigate = useNavigate();
   const { setError } = useError();
   const { setUserId } = useUser(); // Get setUserId from useUser
-  const { userId } = useUser();
-  const { fetchPrivateKey } = useFetchPrivateKey(userId as string);
+
   const { getProfileImage } = useGetProfileImage();
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -56,9 +54,6 @@ const useLogin = () => {
 
           console.log("UserID has been set in context:", customUserID);
           navigate("/homepage");
-
-          const privateKey = await fetchPrivateKey();
-          console.log("Private Key stored", privateKey);
 
           // Navigate to homepage after setting userId
         } else {

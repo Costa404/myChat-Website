@@ -9,8 +9,10 @@ import { AuthProvider } from "./components/Authentication/hooksAuthentication/us
 import { ErrorProvider } from "./components/errorContext/useError";
 import ErrorDisplay from "./components/errorContext/ErrorDisplay";
 import { UserProvider } from "./components/Users/userContext";
-import Chat from "./components/chat/Chat";
+
 import CustomErrorPage from "./components/errorContext/ErrorRoute";
+import Chat from "./components/Pages/chat/Chat";
+import { StatusProvider } from "./Contexts/StatusContext/StatusContext";
 
 type RootProps = {
   children: React.ReactNode;
@@ -53,10 +55,12 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <ErrorProvider>
       <UserProvider>
-        <AuthProvider>
-          <ErrorDisplay />
-          <RouterProvider router={router} />
-        </AuthProvider>
+        <StatusProvider>
+          <AuthProvider>
+            <ErrorDisplay />
+            <RouterProvider router={router} />
+          </AuthProvider>
+        </StatusProvider>
       </UserProvider>
     </ErrorProvider>
   </StrictMode>

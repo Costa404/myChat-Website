@@ -6,6 +6,7 @@ import useLogin from "./hooksAuthentication/useLogin";
 
 import Btn from "./BtnAuthentication/BtnAuthentication";
 import CreateAccount from "./CreateAccount/CreateAccount";
+import AnimatedText from "./Animation";
 
 // import CreateAccount from "./CreateAccount/CreateAccount";
 
@@ -27,7 +28,7 @@ const Authentication: React.FC<AuthenticationProps> = ({ friendId }) => {
       <div className={style.contentAuth}>
         <div className={style.contentLeft}>
           {" "}
-          <h1>myChat</h1>
+          <AnimatedText />
           <p>Connect with friends and the world around you on myChat.</p>
         </div>
 

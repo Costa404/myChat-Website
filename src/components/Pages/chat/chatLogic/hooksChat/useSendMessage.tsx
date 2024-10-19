@@ -1,9 +1,11 @@
 import { useState } from "react";
-import { useError } from "../../../errorContext/useError";
-import { useUser } from "../../../Users/userContext";
+
 import { addDoc, collection, Timestamp } from "firebase/firestore";
-import { db } from "../../../../firebase";
-import useFetchFriendName from "../../../Pages/chat/chatLogic/hooksChat/useFetchFriendName";
+
+import useFetchFriendName from "./useFetchFriendName"; // Pegar nome do amigo
+import { useError } from "../../../../errorContext/useError";
+import { useUser } from "../../../../Users/userContext";
+import { db } from "../../../../../firebase";
 
 type useSendMessagesProps = {
   chatId: string;
@@ -25,8 +27,9 @@ const useSendMessage = ({ chatId }: useSendMessagesProps) => {
     }
 
     try {
+      // Adicionando a mensagem diretamente sem encriptação
       await addDoc(collection(db, "messages"), {
-        text: newMessage,
+        text: newMessage, // Mensagem não encriptada
         timestamp: Timestamp.now(),
         userId: currentUserId,
         chatId: chatId,

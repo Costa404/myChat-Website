@@ -5,8 +5,6 @@ import { useAuth } from "../hooksAuthentication/useAuthContext";
 import { useError } from "../../errorContext/useError";
 import { useState } from "react";
 import { User } from "firebase/auth";
-import { generateKeyPair } from "../../chat/chatLogic/UtilityFunctionsChat/generateKeyPair";
-import JSEncrypt from "jsencrypt";
 
 const useSignup = () => {
   const { email, password } = useAuth();
@@ -30,29 +28,29 @@ const useSignup = () => {
 
       // ================================
 
-      const { privateKey, publicKey } = generateKeyPair();
-      if (!publicKey || !privateKey) throw new Error("Keys are not available");
+      // const { privateKey, publicKey } = generateKeyPair();
+      // if (!publicKey || !privateKey) throw new Error("Keys are not available");
 
       // ================================
 
       // JSEncrypt para criptografia e descriptografia
 
-      // ================================
-      const encryptor = new JSEncrypt(); // Cria uma instância do JSEncrypt
-      encryptor.setPublicKey(publicKey); // Define a chave pública para criptografar
+      // // ================================
+      // const encryptor = new JSEncrypt(); // Cria uma instância do JSEncrypt
+      // encryptor.setPublicKey(publicKey); // Define a chave pública para criptografar
 
-      // Criptografar
-      const encrypted = encryptor.encrypt("teste de mensagem");
-      if (!encrypted) throw new Error("Encryption failed");
+      // // Criptografar
+      // const encrypted = encryptor.encrypt("teste de mensagem");
+      // if (!encrypted) throw new Error("Encryption failed");
 
-      console.log("Encrypted message:", encrypted);
+      // console.log("Encrypted message:", encrypted);
 
-      // Para descriptografar
-      encryptor.setPrivateKey(privateKey); // Define a chave privada para descriptografar
-      const decrypted = encryptor.decrypt(encrypted);
-      console.log("Decrypted message:", decrypted); // Deve ser "teste de mensagem"
+      // // Para descriptografar
+      // encryptor.setPrivateKey(privateKey); // Define a chave privada para descriptografar
+      // const decrypted = encryptor.decrypt(encrypted);
+      // console.log("Decrypted message:", decrypted); // Deve ser "teste de mensagem"
 
-      // ================================
+      // // ================================
 
       // Armazenar no Firestore
 
@@ -62,8 +60,6 @@ const useSignup = () => {
         userId: userId,
         email: user.email,
         createdAt: new Date(),
-        publicKey, // Armazena a chave pública
-        privateKey, // Armazena a chave privada (atenção para ambientes de produção)
       });
 
       console.log(

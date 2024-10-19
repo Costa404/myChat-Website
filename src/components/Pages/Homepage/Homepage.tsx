@@ -1,10 +1,11 @@
 import React from "react";
 import useLogOut from "../../Authentication/hooksAuthentication/useLogout";
 import style from "./homepage.module.css";
-import MainUsers from "../../UtilityFunctions/CreateChat/MainUsers/MainUsers";
+
 import { useUser } from "../../Users/userContext";
 import ProfileImage from "../../Users/UserImg/ProfileImg";
 import styleHeader from "../../Header/Header.module.css";
+import MainUsers from "./SubHomepage/MainUsers/MainUsers";
 
 const Homepage: React.FC = () => {
   const { handleLogOut } = useLogOut();

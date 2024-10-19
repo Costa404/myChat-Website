@@ -29,10 +29,3 @@ const storage = getStorage(app);
 
 // Exporta os serviços
 export { db, auth, storage };
-
-// export const fetchGames = async () => {
-//   const colRef = collection(db, "games");
-//   const snapshot = await getDocs(colRef);
-
-//   return { docs: snapshot.docs, colRef }; // Retorna os dados e a referência da coleção
-// };

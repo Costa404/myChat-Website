@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "module": "CommonJS", // Altere para NodeNext
+    "target": "ES2017",
+    "outDir": "lib",
+    "sourceMap": true,
+    "strict": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "moduleResolution": "Node",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true
+  },
+  "compileOnSave": true,
+  "include": ["src"]
+}

@@ -12,7 +12,8 @@ const Homepage: React.FC = () => {
   const { userId } = useUser();
 
   return (
-    <section className={style.geralContent}>
+    <section className={`${style.geralContent}`}>
+      <div></div>
       <div className={styleHeader.header}>
         <h6>{userId}</h6>
         <span>

@@ -7,6 +7,7 @@ import useLogin from "./hooksAuthentication/useLogin";
 import Btn from "./BtnAuthentication/BtnAuthentication";
 import CreateAccount from "./CreateAccount/CreateAccount";
 import AnimatedText from "./Animation";
+import { useError } from "../errorContext/useError";
 
 // import CreateAccount from "./CreateAccount/CreateAccount";
 
@@ -18,6 +19,7 @@ const Authentication: React.FC<AuthenticationProps> = ({ friendId }) => {
   // const { isVisible, handleButtonClick } = useCreateAccountToggle();
 
   const { handleLogin } = useLogin();
+  const { error } = useError();
 
   const [loginAndSignUp, setLoginAndSignUp] = useState<"login" | "signup">(
     "login"
@@ -39,6 +41,7 @@ const Authentication: React.FC<AuthenticationProps> = ({ friendId }) => {
               setLoginAndSignUp={setLoginAndSignUp}
             />
             <InputEmailPassword className={style.input} />
+            <p style={{ color: "red", fontSize: "1.5rem" }}>{error}</p>
           </span>
           {loginAndSignUp === "login" ? (
             <form className={style.subContentRight} onSubmit={handleLogin}>

@@ -8,7 +8,7 @@ import { useImgUpload } from "../../Users/UserImg/useImgUpload";
 import { useCheckUserId } from "./useCheckUserId";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import { useError } from "../../errorContext/useError";
+import { useError } from "../../errorContext/useError";
 
 type CreateAccountType = {
   className?: string;
@@ -22,7 +22,6 @@ const CreateAccount: React.FC<CreateAccountType> = ({ friendId }) => {
   const { selectedImg, handleImgChange, uploadImage } = useImgUpload();
   const navigate = useNavigate();
   const [isSignUpComplete, setIsSignedUpComplete] = useState(false);
-  // const { setError } = useError();
 
   const { checkUserId } = useCheckUserId(userId as string, friendId);
 
@@ -67,6 +66,7 @@ const CreateAccount: React.FC<CreateAccountType> = ({ friendId }) => {
           onChange={(e) => setUserId(e.target.value)}
           required
         />
+
         <input
           className={style.inputFile}
           type="file"

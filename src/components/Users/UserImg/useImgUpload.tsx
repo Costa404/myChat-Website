@@ -42,7 +42,7 @@ export const useImgUpload = () => {
             console.log("URL do upload:", url);
             setUploadUrl(url);
             setUploading(false);
-            setSelectedImg(null); // Reset selected image after upload
+            setSelectedImg(null);
           } catch (error) {
             console.error("Erro ao obter URL do upload:", error);
             setUploading(false);

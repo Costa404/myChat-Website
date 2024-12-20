@@ -1,13 +1,11 @@
-// UserList.tsx
 import React from "react";
 import UserItem from "./UserItem";
 
-// Defina a interface Chat
 interface Chat {
   id: string;
   participants: string[];
   lastSenderId: string;
-  lastMessageTime?: string; // Opcional
+  lastMessageTime?: string; // ? Opcional
 }
 
 type UserListProps = {
@@ -38,7 +36,6 @@ const UserList: React.FC<UserListProps> = ({
             ? chat.lastMessageTime
             : "No messages yet";
 
-        // Log para depuração
         console.log(
           `User ID: ${user.userId}, Chat: ${chat}, Last Message Time: ${lastMessageTime}`
         );

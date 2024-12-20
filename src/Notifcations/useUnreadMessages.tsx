@@ -4,7 +4,6 @@ import { collection, onSnapshot, query, where } from "firebase/firestore";
 import { db } from "../firebase";
 
 export const useUnreadMessages = (userId: string) => {
-  // Em vez de usar apenas um número, vamos usar um objeto para armazenar a contagem por chatId
   const [unreadCounts, setUnreadCounts] = useState<Record<string, number>>({});
   const { loading, chatIds } = useFetchChatIds(userId);
 
@@ -21,7 +20,6 @@ export const useUnreadMessages = (userId: string) => {
       return;
     }
 
-    // Limpa listeners ao mudar de usuário ou ao desmontar o componente
     const unsubscribes: (() => void)[] = [];
 
     chatIds.forEach((chatId) => {
@@ -37,7 +35,7 @@ export const useUnreadMessages = (userId: string) => {
           // console.log(
           //   `Contador de mensagens não lidas para o chat ${chatId}: ${unreadMessages}`
           // );
-          // Atualiza a contagem de mensagens não lidas apenas para este chatId
+
           setUnreadCounts((prevCounts) => ({
             ...prevCounts,
             [chatId]: unreadMessages,
@@ -45,17 +43,13 @@ export const useUnreadMessages = (userId: string) => {
         }
       );
 
-      // Marca mensagens como lidas quando o chat é aberto
-
-      // Adiciona o unsubscribe para limpar o listener depois
       unsubscribes.push(unsubscribe);
     });
 
-    // Limpa todos os listeners ao desmontar o componente ou ao mudar o userId
     return () => {
       unsubscribes.forEach((unsubscribe) => unsubscribe());
     };
   }, [userId, chatIds, loading]);
 
-  return { unreadCounts, loading }; // Retorna um objeto de contagem por chatId
+  return { unreadCounts, loading };
 };

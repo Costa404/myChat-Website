@@ -13,7 +13,6 @@ export const useGetLastMessage = () => {
       const querySnapshot = await getDocs(q);
 
       if (!querySnapshot.empty) {
-        // Retorna o dado da última mensagem
         const lastMessage = querySnapshot.docs[0].data();
         console.log("Last message retrieved:", lastMessage);
         return lastMessage;

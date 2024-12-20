@@ -16,11 +16,11 @@ import { db } from "../../../../../firebase";
 export interface MessageProps {
   id: string;
   text: string;
-  userId: string; // ID do usuário que enviou a mensagem
-  timestamp: Timestamp; // Timestamp da mensagem
-  chatId: string; // ID do chat
-  from: string; // ID do usuário que enviou a mensagem
-  read: boolean; // Indica se a mensagem foi lida
+  userId: string;
+  timestamp: Timestamp;
+  chatId: string;
+  from: string;
+  read: boolean;
 }
 type useSendMessagesProps = {
   userId: string;
@@ -82,7 +82,7 @@ const useMessages = ({ userId, chatId }: useSendMessagesProps) => {
         });
       });
 
-      setMessages(messagesArray); // Define as mensagens recebidas no estado
+      setMessages(messagesArray);
     });
 
     return () => unsubscribe();

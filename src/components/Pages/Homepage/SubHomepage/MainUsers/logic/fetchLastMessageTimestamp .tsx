@@ -8,7 +8,6 @@ import {
 } from "firebase/firestore";
 import { db } from "../../../../../../firebase";
 
-// Função para buscar a última mensagem
 export const fetchLastMessageTimestamp = async (chatId: string) => {
   const messagesRef = collection(db, "messages");
   const q = query(
@@ -28,11 +27,9 @@ export const fetchLastMessageTimestamp = async (chatId: string) => {
       "Timestamp encontrado:",
       timestamp ? timestamp.toDate() : "Nenhum timestamp"
     );
-    return timestamp; // Retorna o timestamp da última mensagem
+    return timestamp;
   }
 
   console.log("Nenhuma mensagem encontrada para o chatId:", chatId);
-  return null; // Caso não haja mensagem
+  return null;
 };
-
-// Para exportar `lastMessage`, você o obterá quando chamar a função em um componente ou hook

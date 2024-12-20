@@ -12,7 +12,6 @@ const InputEmailPassword: React.FC<InputEmailPasswordType> = () => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    // Focar no input quando o componente for montado
     if (inputRef.current) {
       inputRef.current.focus();
     }

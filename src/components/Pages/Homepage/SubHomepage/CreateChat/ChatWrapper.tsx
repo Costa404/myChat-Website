@@ -4,16 +4,15 @@ import { db } from "../../../../../firebase";
 
 interface Chat {
   id: string;
-  participants: string[]; // Ajuste os campos conforme sua estrutura
+  participants: string[];
   createdAt: Date;
   lastMessageTime?: string;
 }
 
-// Crie uma função para converter dados do Firestore no tipo Chat
 const convertToChat = (doc: DocumentData): Omit<Chat, "id"> => {
   return {
-    participants: doc.participants as string[], // Ajuste o tipo conforme sua estrutura
-    createdAt: doc.createdAt.toDate(), // Converta para um objeto Date se necessário
+    participants: doc.participants as string[],
+    createdAt: doc.createdAt.toDate(),
   };
 };
 
@@ -27,7 +26,7 @@ const ChatListComponent: React.FC = () => {
         const chatSnapshot = await getDocs(chatCollection);
         const chatList = chatSnapshot.docs.map((doc) => ({
           id: doc.id,
-          ...convertToChat(doc.data()), // Use a função de conversão aqui
+          ...convertToChat(doc.data()),
         }));
         setChats(chatList);
       } catch (error) {

@@ -19,19 +19,19 @@ export const useGetLastMessage = (chatId: string) => {
       collection(db, "messages"),
       where("chatId", "==", chatId),
       orderBy("timestamp", "desc"),
-      limit(1) // Limita para obter apenas a última mensagem
+      limit(1)
     );
 
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       if (!querySnapshot.empty) {
         const messageData = querySnapshot.docs[0].data();
-        setLastMessage(messageData.text); // Ajuste se necessário para o campo correto
+        setLastMessage(messageData.text);
       } else {
-        setLastMessage(null); // Se não houver mensagens
+        setLastMessage(null);
       }
     });
 
-    return () => unsubscribe(); // Limpa o listener ao desmontar
+    return () => unsubscribe();
   }, [chatId]);
 
   return { lastMessage };

@@ -36,7 +36,7 @@ const ProfileImage: React.FC<ProfileImageProps> = ({ userId }) => {
         setProfileImageUrl(url);
       } catch (error) {
         console.error("Failed to fetch image URL:", error);
-        setProfileImageUrl(null); // Ou um fallback para uma imagem padrão
+        setProfileImageUrl(null);
       } finally {
         setLoading(false);
       }

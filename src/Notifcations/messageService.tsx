@@ -33,11 +33,11 @@ export const markMessagesAsRead = async (chatId: string, userId: string) => {
   try {
     const snapshot = await fetchUnreadMessages(chatId, userId);
     const updates = snapshot.docs.map((doc) => {
-      const messageRef = doc.ref; // Referência do documento
-      console.log("Document Reference:", messageRef); // V
+      const messageRef = doc.ref;
+      console.log("Document Reference:", messageRef);
       return updateDoc(messageRef, { read: true });
     });
-    await Promise.all(updates); // Aguarda todas as atualizações
+    await Promise.all(updates);
     console.log(
       `Todas as mensagens marcadas como lidas para chatId: ${chatId}`
     );

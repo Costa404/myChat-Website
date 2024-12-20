@@ -1,6 +1,5 @@
 import React, { createContext, useState, useContext } from "react";
 
-// Definindo o tipo do contexto para TypeScript (opcional)
 type AuthContextType = {
   // userId: string;
   // setUserId: React.Dispatch<React.SetStateAction<string>>;

@@ -1,4 +1,3 @@
-// ErrorContext.tsx
 import React, { createContext, useContext, useState, useEffect } from "react";
 
 interface ErrorContextType {
@@ -20,7 +19,6 @@ export const ErrorProvider: React.FC<{ children: React.ReactNode }> = ({
         setError(null);
       }, 10000); // Limpa o erro após 10 segundos
 
-      // Limpa o timer se o componente for desmontado ou o erro mudar
       return () => clearTimeout(timer);
     }
   }, [error]);

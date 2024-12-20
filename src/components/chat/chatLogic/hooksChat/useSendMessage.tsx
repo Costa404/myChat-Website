@@ -7,14 +7,14 @@ import useFetchFriendName from "../../../Pages/chat/chatLogic/hooksChat/useFetch
 
 type useSendMessagesProps = {
   chatId: string;
-  userId?: string; // userId ainda opcional
+  userId?: string;
 };
 
 const useSendMessage = ({ chatId }: useSendMessagesProps) => {
   const [newMessage, setNewMessage] = useState<string>("");
   const { setError } = useError();
-  const { userId: currentUserId } = useUser(); // ID do usuário autenticado
-  const { userName } = useFetchFriendName(); // Pegar o nome do amigo
+  const { userId: currentUserId } = useUser();
+  const { userName } = useFetchFriendName();
 
   const sendMessage = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

@@ -14,15 +14,14 @@ export const useHandleClickChat = () => {
 
     setSelectedUserId(friendId);
 
-    await startChat(friendId); // Envia a mensagem
+    await startChat(friendId);
 
     const chat = chats.find((chat) => chat.participants.includes(friendId));
 
     if (chat) {
       console.log(`Chat found for userId: ${friendId}, chatId: ${chat.id}`);
       if (chat.lastSenderId !== userId) {
-        // receiver views the message
-        updateLastMessageTimes(chat.id); // update lastMessageTime to reflect view time
+        updateLastMessageTimes(chat.id);
       }
     } else {
       console.log(`No chat found for userId: ${friendId}`);

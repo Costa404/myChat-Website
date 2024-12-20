@@ -26,21 +26,20 @@ const CreateAccount: React.FC<CreateAccountType> = ({ friendId }) => {
 
   useEffect(() => {
     if (userId && isSignUpComplete) {
-      checkUserId(); // Só é chamado quando o userId é atualizado
+      checkUserId();
     }
   }, [isSignUpComplete, userId]);
 
-  // Função para lidar com a segunda etapa
   const handleSecondStep = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!userId) {
       return;
     }
-    // Validação do userId
+
     // if (userId.charAt(0) !== userId.charAt(0).toLowerCase()) {
     //   setError("O nome de usuário deve começar com uma letra minúscula.");
-    //   return; // Impede o envio se a validação falhar
+    //   return;
     // }
 
     const signupSuccess = await handleSignUp(userId as string);
@@ -61,7 +60,7 @@ const CreateAccount: React.FC<CreateAccountType> = ({ friendId }) => {
           name="userId"
           id="userId"
           placeholder="userId"
-          value={userId ?? ""} // Converte null para string vazia
+          value={userId ?? ""}
           onChange={(e) => setUserId(e.target.value)}
           required
         />

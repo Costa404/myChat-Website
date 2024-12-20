@@ -6,7 +6,6 @@ export const createChat = async (
   friendId: string
 ): Promise<string> => {
   try {
-    // Função para gerar um chatId consistente
     const generateChatId = (userId: string, friendId: string) => {
       // console.log(
       //   `Generating chatId with userId: ${userId} and friendId: ${friendId}`

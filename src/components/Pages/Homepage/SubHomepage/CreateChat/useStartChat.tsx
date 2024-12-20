@@ -39,10 +39,10 @@ const useStartChat = () => {
       const chatId = await createChat(userId, friendId);
       if (chatId) {
         setNewChatId(chatId);
-        return chatId; // Retorne o chatId gerado
+        return chatId;
       }
     }
-    return null; // Retorne null se não houver chatId
+    return null;
   };
 
   return { startChat };

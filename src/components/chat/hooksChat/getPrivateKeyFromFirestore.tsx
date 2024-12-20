@@ -4,10 +4,10 @@ import { db } from "../../../firebase";
 // Função para buscar a chave privada do Firestore
 export const getPrivateKeyFromFirestore = async (email: string) => {
   try {
-    const userDoc = await getDoc(doc(db, "users", email)); // Acessa o documento do usuário pelo email
+    const userDoc = await getDoc(doc(db, "users", email));
     if (userDoc.exists()) {
       const userData = userDoc.data();
-      const privateKey = userData?.privateKey; // Supondo que você tenha um campo 'privateKey' no documento do usuário
+      const privateKey = userData?.privateKey;
       if (privateKey) {
         return privateKey;
       } else {

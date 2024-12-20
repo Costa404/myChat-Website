@@ -14,7 +14,7 @@ export const useStartChat = () => {
     }
 
     try {
-      const newChatId = await createChat(userId, friendId); // Função para criar o chat no Firebase
+      const newChatId = await createChat(userId, friendId);
 
       markMessagesAsRead(newChatId, userId);
       navigate(`/chat/${newChatId}`); // Navegar para a página do chat

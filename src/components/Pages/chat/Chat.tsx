@@ -35,7 +35,7 @@ const Chat: React.FC = () => {
     if (validChatId && validUserId) {
       markMessagesAsRead(validChatId, validUserId);
     }
-  }, [validChatId, validUserId, messages]); // Executa quando chatId ou userId mudarem
+  }, [validChatId, validUserId, messages]);
 
   if (!chatId || !userId) {
     console.error("chatId or userId is undefined");
@@ -49,16 +49,14 @@ const Chat: React.FC = () => {
   return (
     <section className={style.totalContent}>
       <HeaderChat userId={validUserId} />{" "}
-      {/* Usando o novo componente Header */}
       <div className={style.chatCustomization}>
         <MessageList messages={messages} currentUserId={validUserId} />{" "}
-        {/* Usando o novo componente MessageList */}
         <div ref={messagesEndRef}></div>
         <MessageForm
           newMessage={newMessage}
           setNewMessage={setNewMessage}
           setIsLastSender={setIsLastSender}
-          sendMessage={sendMessage} // Atualizado para sendMessage
+          sendMessage={sendMessage}
         />{" "}
       </div>
     </section>

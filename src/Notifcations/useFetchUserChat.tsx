@@ -11,13 +11,13 @@ export const useFetchUserChat = async (userId: string) => {
 };
 
 export const useFetchChatIds = (userId: string) => {
-  const [chatIds, setChatIds] = useState<string[]>([]); // Estado para armazenar chatIds
-  const [loading, setLoading] = useState<boolean>(true); // Estado para controlar o loading
+  const [chatIds, setChatIds] = useState<string[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
   const chats = useFetchUserChat(userId);
   useEffect(() => {
     const fetchChatIds = async () => {
-      setChatIds(await chats); // Atualiza o estado com os IDs dos chats
-      setLoading(false); // Define loading como false após a busca
+      setChatIds(await chats);
+      setLoading(false);
     };
 
     fetchChatIds();

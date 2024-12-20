@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { collection, onSnapshot } from "firebase/firestore"; // Usar onSnapshot para real-time updates
-import { getAuth } from "firebase/auth"; // Importar o Firebase Authentication
+import { collection, onSnapshot } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
 import { db } from "../../../../../firebase";
 
 interface User {
@@ -26,10 +26,9 @@ const useSearchUsers = () => {
     const unsubscribe = onSnapshot(collection(db, "users"), (snapshot) => {
       const usersList: User[] = snapshot.docs.map((doc) => ({
         userId: doc.data().userId,
-        email: doc.data().email, // Certifique-se que 'email' está no Firestore
+        email: doc.data().email,
       }));
 
-      // Filtrar todos os usuários, exceto o usuário autenticado
       const filteredUsers = usersList.filter(
         (user) => user.email !== currentUser?.email
       );
@@ -38,7 +37,6 @@ const useSearchUsers = () => {
       setIsLoading(false);
     });
 
-    // Cleanup listener quando o componente desmonta
     return () => unsubscribe();
   }, []);
 

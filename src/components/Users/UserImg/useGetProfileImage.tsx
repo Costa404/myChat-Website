@@ -9,7 +9,7 @@ export const useGetProfileImage = () => {
     }
 
     const storageRef = ref(storage, `profileImages/${userId}`);
-    console.log("Storage reference:", storageRef.fullPath); // Verifique o caminho
+    console.log("Storage reference:", storageRef.fullPath);
 
     try {
       const url = await getDownloadURL(storageRef);

@@ -29,11 +29,9 @@
 //     return { publicKey: storedPublicKey };
 //   }
 
-//   // Caso contrário, gere uma nova chave
 //   const encrypt = new JSEncrypt();
 //   const newPublicKey = encrypt.getPublicKey();
 
-//   // Armazena a nova chave pública no localStorage, associada ao userId
 //   localStorage.setItem(`publicKey_${userId}`, newPublicKey);
 
 //   console.log("New public key generated and stored.");
@@ -41,11 +39,9 @@
 // };
 // import JSEncrypt from "jsencrypt";
 
-// // Função para gerar a chave privada e pública
 // export const generateKeyPair = () => {
 //   const encrypt = new JSEncrypt(); // Tamanho da chave pode ser alterado se necessário
 
-//   // Gera as chaves
 //   const privateKey = encrypt.getPrivateKey();
 //   const publicKey = encrypt.getPublicKey();
 

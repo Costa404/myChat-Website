@@ -19,7 +19,6 @@ export const useGetEmailFromUsername = () => {
         return null;
       }
 
-      // Obtém o e-mail do primeiro documento encontrado
       let email;
       querySnapshot.forEach((doc) => {
         email = doc.id; // O id do documento é o e-mail

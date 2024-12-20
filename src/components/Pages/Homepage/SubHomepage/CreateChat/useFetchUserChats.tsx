@@ -11,7 +11,7 @@ import { db } from "../../../../../firebase";
 import { useUser } from "../../../../Users/userContext";
 
 type Message = {
-  time: Timestamp; // O tempo em que a mensagem foi enviada
+  time: Timestamp;
 };
 
 type Chat = {

@@ -13,13 +13,13 @@ import { UserProvider } from "./components/Users/userContext";
 import CustomErrorPage from "./components/errorContext/ErrorRoute";
 import Chat from "./components/Pages/chat/Chat";
 import { StatusProvider } from "./Contexts/StatusContext/StatusContext";
-  
+
 type RootProps = {
   children: React.ReactNode;
 };
 
 const Root = ({ children }: RootProps) => {
-  return <>{children}</>; // Use fragment ao invés de div
+  return <>{children}</>;
 };
 
 const router = createBrowserRouter([

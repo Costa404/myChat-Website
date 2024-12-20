@@ -2,21 +2,21 @@ import { useState } from "react";
 
 import { addDoc, collection, Timestamp } from "firebase/firestore";
 
-import useFetchFriendName from "./useFetchFriendName"; // Pegar nome do amigo
+import useFetchFriendName from "./useFetchFriendName";
 import { useError } from "../../../../errorContext/useError";
 import { useUser } from "../../../../Users/userContext";
 import { db } from "../../../../../firebase";
 
 type useSendMessagesProps = {
   chatId: string;
-  userId?: string; // userId ainda opcional
+  userId?: string;
 };
 
 const useSendMessage = ({ chatId }: useSendMessagesProps) => {
   const [newMessage, setNewMessage] = useState<string>("");
   const { setError } = useError();
-  const { userId: currentUserId } = useUser(); // ID do usuário autenticado
-  const { userName } = useFetchFriendName(); // Pegar o nome do amigo
+  const { userId: currentUserId } = useUser();
+  const { userName } = useFetchFriendName();
 
   const sendMessage = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -27,9 +27,8 @@ const useSendMessage = ({ chatId }: useSendMessagesProps) => {
     }
 
     try {
-      // Adicionando a mensagem diretamente sem encriptação
       await addDoc(collection(db, "messages"), {
-        text: newMessage, // Mensagem não encriptada
+        text: newMessage,
         timestamp: Timestamp.now(),
         userId: currentUserId,
         chatId: chatId,

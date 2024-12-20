@@ -1,5 +1,5 @@
 import React from "react";
-import EmojiPicker from "emoji-picker-react"; // Corrigido aqui
+import EmojiPicker from "emoji-picker-react";
 import style from "../Chat.module.css";
 import { BsEmojiSmile } from "react-icons/bs";
 
@@ -20,12 +20,12 @@ const MessageForm: React.FC<MessageFormProps> = ({
 
   const handleEmojiSelect = (emoji: { unified: string }) => {
     const emojiString = String.fromCodePoint(parseInt(emoji.unified, 16));
-    setNewMessage(newMessage + emojiString); // Correção aqui
+    setNewMessage(newMessage + emojiString);
   };
 
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     sendMessage(e);
-    setIsLastSender(true); // Define o último remetente após o envio da mensagem
+    setIsLastSender(true);
   };
 
   return (

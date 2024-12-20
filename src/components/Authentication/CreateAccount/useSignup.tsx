@@ -36,8 +36,8 @@ const useSignup = () => {
       // JSEncrypt para criptografia e descriptografia
 
       // // ================================
-      // const encryptor = new JSEncrypt(); // Cria uma instância do JSEncrypt
-      // encryptor.setPublicKey(publicKey); // Define a chave pública para criptografar
+      // const encryptor = new JSEncrypt();
+      // encryptor.setPublicKey(publicKey);
 
       // // Criptografar
       // const encrypted = encryptor.encrypt("teste de mensagem");
@@ -48,7 +48,7 @@ const useSignup = () => {
       // // Para descriptografar
       // encryptor.setPrivateKey(privateKey); // Define a chave privada para descriptografar
       // const decrypted = encryptor.decrypt(encrypted);
-      // console.log("Decrypted message:", decrypted); // Deve ser "teste de mensagem"
+      // console.log("Decrypted message:", decrypted);
 
       // // ================================
 
